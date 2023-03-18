@@ -9,5 +9,9 @@ return {
 
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
-  -- { import = "astrocommunity.indent.indent-blankline-nvim" },
+  -- { import = "astrocommunity.syntax.hlargs-nvim" },
+  -- {
+  --   "m-demare/hlargs.nvim",
+  --   opts = { color = "#e1e2e3" },
+  -- },
 }
