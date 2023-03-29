@@ -9,9 +9,9 @@ return {
 
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
-  -- { import = "astrocommunity.syntax.hlargs-nvim" },
-  -- {
-  --   "m-demare/hlargs.nvim",
-  --   opts = { color = "#e1e2e3" },
-  -- },
+  { import = "astrocommunity.syntax.hlargs-nvim" },
+  {
+    "m-demare/hlargs.nvim",
+    opts = { color = "#ebdbb2" },
+  },
 }

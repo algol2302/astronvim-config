@@ -15,7 +15,9 @@ return {
         colorcolumn = "120",
         clipboard = "unnamedplus",
         list = true,
-        listchars = "tab:» ,space:·,extends:<,precedes:>,conceal:┊,nbsp:␣",
+        listchars = "eol:↲,tab:» ,trail:·,space:·,extends:<,precedes:>,conceal:┊,nbsp:␣",
+        langmap =
+        "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz",
     },
     g = {
         mapleader = " ",             -- sets vim.g.mapleader
