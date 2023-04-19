@@ -132,4 +132,14 @@ return {
       },
     },
   },
+
+  {
+    "mrjones2014/smart-splits.nvim",
+    build = "./kitty/install-kittens.bash",
+    opts = {
+      ignored_filetypes = { "nofile", "quickfix", "qf", "prompt" },
+      ignored_buftypes = { "nofile" },
+      multiplexer_integration = nil,
+    },
+  },
 }

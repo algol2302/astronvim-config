@@ -43,16 +43,16 @@ return {
   },
   -- Configure AstroNvim updates
   updater = {
-    remote = "origin",     -- remote to use
-    channel = "stable",    -- "stable" or "nightly"
-    version = "latest",    -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
-    branch = "nightly",    -- branch name (NIGHTLY ONLY)
-    commit = nil,          -- commit hash (NIGHTLY ONLY)
-    pin_plugins = nil,     -- nil, true, false (nil will pin plugins on stable only)
-    skip_prompts = false,  -- skip prompts about breaking changes
+    remote = "origin", -- remote to use
+    channel = "stable", -- "stable" or "nightly"
+    version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
+    branch = "nightly", -- branch name (NIGHTLY ONLY)
+    commit = nil, -- commit hash (NIGHTLY ONLY)
+    pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
+    skip_prompts = false, -- skip prompts about breaking changes
     show_changelog = true, -- show the changelog after performing an update
-    auto_quit = false,     -- automatically quit the current session after a successful update
-    remotes = {            -- easily add new remotes to track
+    auto_quit = false, -- automatically quit the current session after a successful update
+    remotes = { -- easily add new remotes to track
       --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
       --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
       --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
@@ -66,7 +66,7 @@ return {
   diagnostics = {
     virtual_text = {
       source = "always", -- Or "if_many"
-      prefix = "●",    -- Could be '■', '▎', 'x'
+      prefix = "●", -- Could be '■', '▎', 'x'
     },
     severity_sort = true,
     underline = true,
@@ -77,7 +77,7 @@ return {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = true,     -- enable or disable format on save globally
+        enabled = true, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
         },
@@ -129,5 +129,12 @@ return {
       desc = "Show file explorer on startup",
       command = "Neotree",
     })
+    --
+    vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+    vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+    vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+    vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
+    vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+    vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
   end,
 }
