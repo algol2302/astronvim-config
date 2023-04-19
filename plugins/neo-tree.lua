@@ -71,13 +71,14 @@ return {
       source_selector = {
         winbar = true,
         content_layout = "center",
-        tab_labels = {
+        sources = {
           filesystem = get_icon "FolderClosed" .. " File",
-          -- buffers = get_icon "DefaultFile" .. " Bufs",
+          buffers = get_icon "DefaultFile" .. " Bufs",
           git_status = get_icon "Git" .. " Git",
           diagnostics = get_icon "Diagnostic" .. " Diagnostic",
         },
       },
+      default_source = "filesystem",
       default_component_configs = {
         indent = { padding = 0, indent_size = 2 },
         icon = {
