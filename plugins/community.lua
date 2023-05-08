@@ -14,5 +14,8 @@ return {
     "m-demare/hlargs.nvim",
     opts = { color = "#ebdbb2" },
   },
+
   { import = "astrocommunity.editing-support.refactoring-nvim" },
+
+  { import = "astrocommunity.diagnostics.trouble-nvim" },
 }
