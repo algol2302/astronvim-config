@@ -5,7 +5,7 @@ return {
   -- available plugins can be found at https://github.com/AstroNvim/astrocommunity
 
   -- { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.colorscheme.everforest" },
+  -- { import = "astrocommunity.colorscheme.everforest" },
 
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
@@ -14,4 +14,5 @@ return {
     "m-demare/hlargs.nvim",
     opts = { color = "#ebdbb2" },
   },
+  { import = "astrocommunity.editing-support.refactoring-nvim" },
 }
