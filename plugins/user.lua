@@ -124,7 +124,7 @@ return {
   },
 
   { "sainnhe/sonokai" },
-  { "eddyekofo94/gruvbox-flat.nvim" },
+
   { "johmsalas/text-case.nvim", config = function() require("textcase").setup {} end },
 
   {
@@ -149,13 +149,13 @@ return {
     "Pocco81/auto-save.nvim",
     config = function()
       require("auto-save").setup {
-        enabled = true, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
+        enabled = true,        -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
         execution_message = {
           message = function() -- message to print on save
             return ("AutoSave: saved at " .. vim.fn.strftime "%H:%M:%S")
           end,
-          dim = 0.18, -- dim the color of `message`
-          cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
+          dim = 0.18,                                              -- dim the color of `message`
+          cleaning_interval = 1250,                                -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
         },
         trigger_events = { "BufLeave", "BufWipeout", "VimLeave" }, -- vim events that trigger auto-save. See :h events
         -- function that determines whether to save the current buffer or not
@@ -166,19 +166,19 @@ return {
           local utils = require "auto-save.utils.data"
 
           if fn.getbufvar(buf, "&modifiable") == 1 and utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
-            return true -- met condition(s), can save
+            return true            -- met condition(s), can save
           end
-          return false -- can't save
+          return false             -- can't save
         end,
         write_all_buffers = false, -- write all buffers when the current one meets `condition`
-        debounce_delay = 135, -- saves the file at most every `debounce_delay` milliseconds
+        debounce_delay = 135,      -- saves the file at most every `debounce_delay` milliseconds
         callbacks = {
           -- functions to be executed at different intervals
-          enabling = nil, -- ran when enabling auto-save
-          disabling = nil, -- ran when disabling auto-save
+          enabling = nil,              -- ran when enabling auto-save
+          disabling = nil,             -- ran when disabling auto-save
           before_asserting_save = nil, -- ran before checking `condition`
-          before_saving = nil, -- ran before doing the actual save
-          after_saving = nil, -- ran after doing the actual save
+          before_saving = nil,         -- ran before doing the actual save
+          after_saving = nil,          -- ran after doing the actual save
         },
       }
     end,
@@ -193,7 +193,7 @@ return {
     -- the second is the table of options as set up in Lazy with the `opts` key
     config = function(plugin, opts)
       -- run the core AstroNvim configuration function with the options table
-      require "plugins.configs.telescope"(plugin, opts)
+      require "plugins.configs.telescope" (plugin, opts)
 
       -- require telescope and load extensions as necessary
       local telescope = require "telescope"
