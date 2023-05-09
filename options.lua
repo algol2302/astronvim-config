@@ -30,6 +30,7 @@ return {
     sonokai_style = "andromeda",     -- andromeda | atlantis | espresso | maia | shusia
     -- sonokai_better_performance = 1,
     sonokai_enable_italic = 1,
+    gruvbox_flat_style = "hard",
   },
 }
 -- If you need more control, you can use the function()...end notation

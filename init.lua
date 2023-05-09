@@ -60,7 +60,9 @@ return {
   },
   -- Set colorscheme to use
   -- colorscheme = "everforest",
-  colorscheme = "sonokai",
+  -- colorscheme = "sonokai",
+  colorscheme = "gruvbox-flat",
+
   -- colorscheme = "astrodark",
   -- colorscheme = "monokai-pro",
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
