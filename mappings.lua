@@ -25,6 +25,7 @@ return {
       end,
       desc = "Close buffer",
     },
+    ["<leader>gm"] = { "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Sort by tabs" },
   },
   t = {
     -- setting a mapping to false will disable it
