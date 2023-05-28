@@ -17,6 +17,8 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+
     ["<leader>c"] = {
       function()
         local bufs = vim.fn.getbufinfo { buflisted = true }
@@ -26,9 +28,19 @@ return {
       desc = "Close buffer",
     },
     ["<leader>gm"] = { "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Sort by tabs" },
+    ["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" },
+    ["<leader>td"] = {
+      function() require("astronvim.utils").toggle_term_cmd "lazydocker" end,
+      desc = "ToggleTerm lazydocker",
+    },
+    ["<leader>lw"] = {
+      function() vim.cmd "silent! wa" end,
+      desc = "Save all renamed buffers",
+    },
   },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
+    -- ["<leader>lr"] = false,
   },
 }
