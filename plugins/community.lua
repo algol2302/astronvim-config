@@ -6,9 +6,11 @@ return {
 
   -- { import = "astrocommunity.colorscheme.catppuccin" },
   -- { import = "astrocommunity.colorscheme.everforest" },
+  { import = "astrocommunity.colorscheme.monokai-pro-nvim" },
 
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
-  { import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
+  { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+  { import = "astrocommunity.project.nvim-spectre" },
   { import = "astrocommunity.syntax.hlargs-nvim" },
   {
     "m-demare/hlargs.nvim",
