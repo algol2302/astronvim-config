@@ -137,11 +137,18 @@ return {
     vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
     vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 
+    vim.api.nvim_create_user_command("ToggleBlame", function(args) require("blame").toggle(args) end, { nargs = "*" })
     -- local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
     -- vim.api.nvim_create_autocmd("BufWritePre", {
     --   pattern = "*.go",
     --   callback = function() require("go.format").goimport() end,
     --   group = format_sync_grp,
     -- })
+
+    vim.filetype.add {
+      pattern = {
+        [".?env.*"] = "dotenv",
+      },
+    }
   end,
 }

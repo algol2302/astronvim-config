@@ -310,9 +310,10 @@ return {
       telescope.load_extension "media_files"
     end,
   },
-
   -- 3-way of merging
   { "tpope/vim-fugitive" },
   -- saving sessions
   { "tpope/vim-obsession" },
+  -- TODO:  https://github.com/FabijanZulj/blame.nvim or https://www.reddit.com/r/neovim/comments/15qsa02/blamenvim_fugitive_style_git_blame/?utm_source=share&utm_medium=web2x&context=3
+  { "FabijanZulj/blame.nvim" },
 }

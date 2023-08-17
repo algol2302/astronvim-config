@@ -27,7 +27,7 @@ return {
       end,
       desc = "Close buffer",
     },
-    ["<leader>gm"] = { "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Sort by tabs" },
+    -- ["<leader>gm"] = { "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle current line blame" },
     ["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" },
     ["<leader>td"] = {
       function() require("astronvim.utils").toggle_term_cmd "lazydocker" end,
@@ -37,6 +37,7 @@ return {
       function() vim.cmd "silent! wa" end,
       desc = "Save all renamed buffers",
     },
+    ["<leader>gm"] = { "<cmd>ToggleBlame virtual<cr>", desc = "Toggle blame" },
   },
   t = {
     -- setting a mapping to false will disable it

@@ -12,6 +12,8 @@ return {
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.project.nvim-spectre" },
   { import = "astrocommunity.syntax.hlargs-nvim" },
+  { import = "astrocommunity.git.diffview-nvim" },
+
   {
     "m-demare/hlargs.nvim",
     opts = { color = "#ebdbb2" },
