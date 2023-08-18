@@ -130,7 +130,72 @@ return {
   {
     "folke/todo-comments.nvim",
     event = "BufRead",
-    config = function() require("todo-comments").setup() end,
+    config = function()
+      require("todo-comments").setup {
+        signs = true, -- show icons in the signs column
+        sign_priority = 8, -- sign priority
+        -- keywords recognized as todo comments
+        keywords = {
+          FIX = {
+            icon = " ", -- icon used for the sign, and in search results
+            color = "error", -- can be a hex color, or a named color (see below)
+            alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+            -- signs = false, -- configure signs for some keywords individually
+          },
+          TODO = { icon = " ", color = "info", alt = { "todo" } },
+          HACK = { icon = " ", color = "warning" },
+          WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+          PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+          NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+          TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+        },
+        gui_style = {
+          fg = "NONE", -- The gui style to use for the fg highlight group.
+          bg = "BOLD", -- The gui style to use for the bg highlight group.
+        },
+        merge_keywords = true, -- when true, custom keywords will be merged with the defaults
+        -- highlighting of the line containing the todo comment
+        -- * before: highlights before the keyword (typically comment characters)
+        -- * keyword: highlights of the keyword
+        -- * after: highlights after the keyword (todo text)
+        highlight = {
+          multiline = true, -- enable multine todo comments
+          multiline_pattern = "^.", -- lua pattern to match the next multiline from the start of the matched keyword
+          multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
+          before = "", -- "fg" or "bg" or empty
+          keyword = "wide", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+          after = "fg", -- "fg" or "bg" or empty
+          pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
+          comments_only = true, -- uses treesitter to match keywords in comments only
+          max_line_len = 400, -- ignore lines longer than this
+          exclude = {}, -- list of file types to exclude highlighting
+        },
+        -- list of named colors where we try to extract the guifg from the
+        -- list of highlight groups or use the hex color if hl not found as a fallback
+        colors = {
+          error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+          warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+          info = { "DiagnosticInfo", "#2563EB" },
+          hint = { "DiagnosticHint", "#10B981" },
+          default = { "Identifier", "#7C3AED" },
+          test = { "Identifier", "#FF00FF" },
+        },
+        search = {
+          command = "rg",
+          args = {
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+          },
+          -- regex that will be used to match keywords.
+          -- don't replace the (KEYWORDS) placeholder
+          pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+          -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
+        },
+      }
+    end,
   },
 
   {
@@ -197,7 +262,7 @@ return {
           show_parameter_hints = true,
           -- prefix for all the other hints (type, chaining)
           other_hints_prefix = "=> ",
-          -- whether to align to the lenght of the longest line in the file
+          -- whether to align to the length of the longest line in the file
           max_len_align = false,
           -- padding from the left if max_len_align is true
           max_len_align_padding = 1,
@@ -214,7 +279,7 @@ return {
         sign_priority = 5, -- change to a higher number to override other signs
         dap_debug = true, -- set to false to disable dap
         dap_debug_keymap = true, -- true: use keymap for debugger defined in go/dap.lua
-        -- false: do not use keymap in go/dap.lua.  you must define your own.
+        -- false: do not use keymap in go/dap.lua. You must define your own.
         -- windows: use visual studio keymap
         dap_debug_gui = {}, -- bool|table put your dap-ui setup here set to false to disable
         dap_debug_vt = { enabled_commands = true, all_frames = true }, -- bool|table put your dap-virtual-text setup here set to false to disable
@@ -224,7 +289,7 @@ return {
         dap_retries = 20, -- see dap option max_retries
         build_tags = "tag1,tag2", -- set default build tags
         textobjects = true, -- enable default text jobects through treesittter-text-objects
-        test_runner = "go", -- one of {`go`, `richgo`, `dlv`, `ginkgo`, `gotestsum`}
+        test_runner = "richgo", -- one of {`go`, `richgo`, `dlv`, `ginkgo`, `gotestsum`}
         verbose_tests = true, -- set to add verbose flag to tests deprecated, see '-v' option
         run_in_floaterm = false, -- set to true to run in float window. :GoTermClose closes the floatterm
         -- float term recommend if you use richgo/ginkgo with terminal color
