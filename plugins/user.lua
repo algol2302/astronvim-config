@@ -360,6 +360,13 @@ return {
   },
 
   {
+    "linux-cultist/venv-selector.nvim",
+    cmd = "VenvSelect",
+    opts = {},
+    -- keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+  },
+
+  {
     "nvim-telescope/telescope.nvim",
     dependencies = { -- add a new dependency to telescope that is our new plugin
       "nvim-telescope/telescope-media-files.nvim",
