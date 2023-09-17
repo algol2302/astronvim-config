@@ -19,6 +19,8 @@ return {
       -- gofumpt = true,
       staticcheck = true,
       usePlaceholders = true,
+      -- expandWorkspaceToModule = false,
+      semanticTokens = true,
       hints = {
         assignVariableTypes = true,
         compositeLiteralFields = true,
