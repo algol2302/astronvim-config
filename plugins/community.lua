@@ -13,6 +13,9 @@ return {
   { import = "astrocommunity.project.nvim-spectre" },
   { import = "astrocommunity.syntax.hlargs-nvim" },
   { import = "astrocommunity.git.diffview-nvim" },
+  { import = "astrocommunity.lsp.inc-rename-nvim" },
+  { import = "astrocommunity.motion.leap-nvim" },
+  { import = "astrocommunity.debugging.nvim-bqf" },
 
   {
     "m-demare/hlargs.nvim",
