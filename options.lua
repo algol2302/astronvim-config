@@ -16,7 +16,7 @@ return {
     colorcolumn = "120",
     clipboard = "unnamedplus",
     list = true,
-    listchars = "eol:↲,tab:» ,trail:·,space:·,extends:<,precedes:>,conceal:┊,nbsp:␣",
+    listchars = "eol:↲,tab:▏ ,trail:·,space:·,extends:<,precedes:>,conceal:┊,nbsp:␣",
     langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz",
   },
   g = {
