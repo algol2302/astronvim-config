@@ -198,18 +198,18 @@ return {
     end,
   },
 
-  {
-    "ray-x/go.nvim",
-    dependencies = { -- optional packages
-      "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function() require("go").setup() end,
-    event = { "CmdlineEnter" },
-    ft = { "go", "gomod" },
-    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
-  },
+  -- {
+  --   "ray-x/go.nvim",
+  --   dependencies = { -- optional packages
+  --     "ray-x/guihua.lua",
+  --     "neovim/nvim-lspconfig",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   config = function() require("go").setup() end,
+  --   event = { "CmdlineEnter" },
+  --   ft = { "go", "gomod" },
+  --   build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+  -- },
 
   {
     "Pocco81/auto-save.nvim",
@@ -250,13 +250,13 @@ return {
     end,
   },
 
-  {
-    "linux-cultist/venv-selector.nvim",
-    cmd = "VenvSelect",
-    opts = {},
-    -- keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
-  },
-
+  -- {
+  --   "linux-cultist/venv-selector.nvim",
+  --   cmd = "VenvSelect",
+  --   opts = {},
+  --   -- keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+  -- },
+  --
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { -- add a new dependency to telescope that is our new plugin
@@ -274,9 +274,9 @@ return {
     end,
   },
   -- 3-way of merging
-  { "tpope/vim-fugitive" },
+  -- { "tpope/vim-fugitive" },
   -- saving sessions
-  { "tpope/vim-obsession" },
+  -- { "tpope/vim-obsession" },
   -- TODO:  https://github.com/FabijanZulj/blame.nvim or https://www.reddit.com/r/neovim/comments/15qsa02/blamenvim_fugitive_style_git_blame/?utm_source=share&utm_medium=web2x&context=3
   { "FabijanZulj/blame.nvim" },
 }
