@@ -60,8 +60,11 @@ return {
   },
   -- Set colorscheme to use
   colorscheme = "sonokai",
-  -- colorscheme = "monokai-pro",
   -- colorscheme = "astrodark",
+  -- colorscheme = "tokyonight-night",
+  -- colorscheme = "nordic",
+  -- colorscheme = "catppuccin",
+
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = {
@@ -158,7 +161,6 @@ return {
       indent = { highlight = highlight },
       scope = { highlight = highlight },
     }
-    hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
     vim.api.nvim_create_user_command("ToggleBlame", function(args) require("blame").toggle(args) end, { nargs = "*" })
     -- local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
