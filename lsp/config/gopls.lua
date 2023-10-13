@@ -20,6 +20,7 @@ return {
       staticcheck = true,
       usePlaceholders = true,
       -- expandWorkspaceToModule = false,
+      -- FIXME: struct.fields in sonokai theme with semanticTokens
       semanticTokens = true,
       hints = {
         assignVariableTypes = true,

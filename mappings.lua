@@ -39,6 +39,7 @@ return {
     },
     ["<leader>gm"] = { "<cmd>ToggleBlame virtual<cr>", desc = "Toggle blame" },
     ["<leader>bf"] = { "<cmd>Neotree filesystem reveal left reveal_force_cwd<cr>", desc = "Toggle current file dir" },
+    ["<leader>fp"] = { "<cmd>Telescope projects<cr>", desc = "Find a project" },
   },
   t = {
     -- setting a mapping to false will disable it

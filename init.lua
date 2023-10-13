@@ -63,7 +63,12 @@ return {
   -- colorscheme = "astrodark",
   -- colorscheme = "tokyonight-night",
   -- colorscheme = "nordic",
-  -- colorscheme = "catppuccin",
+  -- colorscheme = "kanagawa",
+  -- colorscheme = "monokai-pro",
+  -- colorscheme = "github_dark",
+  -- colorscheme = "everforest",
+  --
+  -- colorscheme = "monokai-nightasty",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -132,6 +137,7 @@ return {
       desc = "Show file explorer on startup",
       command = "Neotree",
     })
+
     --
     local highlight = {
       "RainbowRed",
@@ -175,5 +181,10 @@ return {
         [".?env.*"] = "dotenv",
       },
     }
+
+    -- override colors:
+    -- vim.cmd [[hi @lsp.typemod.variable.defaultLibrary guifg='#BA9CF3']]
+    -- vim.api.nvim_set_hl(0, "@lsp.type.parameter", {})
+    vim.cmd [[hi @lsp.typemod.variable.readonly guifg='#BA9CF3' cterm=italic gui=italic]]
   end,
 }

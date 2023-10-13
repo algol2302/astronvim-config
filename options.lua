@@ -30,7 +30,6 @@ return {
     sonokai_style = "atlantis", -- andromeda | atlantis | espresso | maia | shusia
     -- sonokai_better_performance = 1,
     sonokai_enable_italic = 1,
-    -- sonokai_dim_inactive_windows = 1,
     -- sonokai_diagnostic_text_highlight = 1,
   },
 }

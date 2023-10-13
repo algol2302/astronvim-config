@@ -104,6 +104,23 @@ return {
   },
 
   {
+    "AstroNvim/astrotheme",
+    opts = {
+      plugins = { ["dashboard-nvim"] = true },
+      palettes = {
+        astrodark = {
+          ui = {
+            text_active = "#ced0de",
+          },
+          syntax = {
+            text = "#ced0de",
+          },
+        },
+      },
+    },
+  },
+
+  {
     "gitsigns.nvim",
     opts = {
       signs = {
