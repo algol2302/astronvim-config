@@ -182,9 +182,10 @@ return {
       },
     }
 
-    -- override colors:
-    -- vim.cmd [[hi @lsp.typemod.variable.defaultLibrary guifg='#BA9CF3']]
-    -- vim.api.nvim_set_hl(0, "@lsp.type.parameter", {})
-    vim.cmd [[hi @lsp.typemod.variable.readonly guifg='#BA9CF3' cterm=italic gui=italic]]
+    -- override colors for sonokai colorscheme:
+    vim.api.nvim_set_hl(0, "@lsp.type.variable", {})
+    vim.cmd [[hi @boolean guifg='#BA9CF3' cterm=italic gui=italic]]
+    -- vim.cmd [[hi @lsp.typemod.variable.defaultLibrary guifg='#BA9CF3' cterm=italic gui=italic]]
+    -- vim.cmd [[hi @lsp.typemod.variable.readonly guifg='#BA9CF3' cterm=italic gui=italic]]
   end,
 }
