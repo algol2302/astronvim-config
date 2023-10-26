@@ -27,7 +27,7 @@ return {
         button("LDR f w", "󰈭  Find Word  "),
         button("LDR f '", "  Bookmarks  "),
         button("LDR S l", "  Last Session  "),
-        button("LDR f p", "⚑ Find Project  "),
+        button("LDR f p", "  Find Project  "),
       }
 
       dashboard.config.layout[1].val = vim.fn.max { 2, vim.fn.floor(vim.fn.winheight(0) * 0.2) }
@@ -173,6 +173,20 @@ return {
       },
       yadm = {
         enable = false,
+      },
+    },
+  },
+
+  {
+    "akinsho/toggleterm.nvim",
+    opts = {
+      size = 10,
+      open_mapping = [[<F7>]],
+      shading_factor = 2,
+      direction = "float",
+      float_opts = {
+        border = "curved",
+        highlights = { border = "Normal", background = "Normal" },
       },
     },
   },

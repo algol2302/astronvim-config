@@ -33,6 +33,20 @@ return {
       function() require("astronvim.utils").toggle_term_cmd "lazydocker" end,
       desc = "ToggleTerm lazydocker",
     },
+    ["<leader>tk"] = {
+      function() require("astronvim.utils").toggle_term_cmd "k9s" end,
+      desc = "ToggleTerm k9s",
+    },
+    ["<leader>tf"] = { "<cmd>ToggleTerm direction=float<cr><cmd>setlocal nospell<cr>", desc = "ToggleTerm float" },
+    ["<leader>th"] = {
+      "<cmd>ToggleTerm size=10 direction=horizontal<cr><cmd>setlocal nospell<cr>",
+      desc = "ToggleTerm horizontal split",
+    },
+    ["<leader>tv"] = {
+      "<cmd>ToggleTerm size=80 direction=vertical<cr><cmd>setlocal nospell<cr>",
+      desc = "ToggleTerm vertical split",
+    },
+
     ["<leader>lw"] = {
       function() vim.cmd "silent! wa" end,
       desc = "Save all renamed buffers",
