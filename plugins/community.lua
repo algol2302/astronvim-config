@@ -21,6 +21,8 @@ return {
   { import = "astrocommunity.motion.leap-nvim" },
   { import = "astrocommunity.debugging.nvim-bqf" },
   { import = "astrocommunity.project.project-nvim" },
+  { import = "astrocommunity.register.nvim-neoclip-lua" },
+
   -- { import = "astrocommunity.utility.noice-nvim" },
 
   {
