@@ -12,9 +12,10 @@ return {
   { import = "astrocommunity.colorscheme.github-nvim-theme" },
   -- { import = "astrocommunity.colorscheme.monokai-pro-nvim" },
   -- { import = "astrocommunity.colorscheme.vscode-nvim" },
-
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
+
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+  { import = "astrocommunity.editing-support.true-zen-nvim" },
   { import = "astrocommunity.project.nvim-spectre" },
   { import = "astrocommunity.syntax.hlargs-nvim" },
   { import = "astrocommunity.git.diffview-nvim" },
@@ -22,6 +23,8 @@ return {
   { import = "astrocommunity.debugging.nvim-bqf" },
   { import = "astrocommunity.project.project-nvim" },
   { import = "astrocommunity.register.nvim-neoclip-lua" },
+  { import = "astrocommunity.editing-support.refactoring-nvim" },
+  { import = "astrocommunity.diagnostics.trouble-nvim" },
 
   -- { import = "astrocommunity.utility.noice-nvim" },
 
@@ -70,8 +73,4 @@ return {
       on_highlights = function(highlights, colors) end,
     },
   },
-
-  { import = "astrocommunity.editing-support.refactoring-nvim" },
-
-  { import = "astrocommunity.diagnostics.trouble-nvim" },
 }

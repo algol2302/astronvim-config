@@ -298,12 +298,25 @@ return {
   --   config = function() require("symbol-usage").setup() end,
   -- },
 
-  -- {
-  --   "linux-cultist/venv-selector.nvim",
-  --   cmd = "VenvSelect",
-  --   opts = {},
-  --   -- keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
-  -- },
+  {
+    "linux-cultist/venv-selector.nvim",
+    dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
+    config = function()
+      require("venv-selector").setup {
+        -- Your options go here
+        name = ".venv",
+        auto_refresh = false,
+      }
+    end,
+    event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+    opts = {},
+    keys = {
+      -- Keymap to open VenvSelector to pick a venv.
+      { "<leader>lv", "<cmd>VenvSelect<cr>" },
+      -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
+      -- { "<leader>vc", "<cmd>VenvSelectCached<cr>" },
+    },
+  },
   --
   {
     "nvim-telescope/telescope.nvim",

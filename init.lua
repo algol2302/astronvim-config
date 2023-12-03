@@ -87,7 +87,7 @@ return {
       format_on_save = {
         enabled = true, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
-          -- "go",
+          "go",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
@@ -139,6 +139,15 @@ return {
       callback = function()
         vim.cmd [[Neotree]]
         vim.cmd [[setlocal nospell]]
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("BufHidden", {
+      desc = "Delete [No Name] buffers",
+      callback = function(data)
+        if data.file == "" and vim.bo[data.buf].buftype == "" and not vim.bo[data.buf].modified then
+          vim.schedule(function() pcall(vim.api.nvim_buf_delete, data.buf, {}) end)
+        end
       end,
     })
 
