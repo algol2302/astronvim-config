@@ -32,10 +32,11 @@ return {
       },
       codelenses = {
         generate = true,
-        gc_details = false,
+        gc_details = true,
         test = true,
         tidy = true,
       },
+      vulncheck = "Imports",
     },
   },
 }

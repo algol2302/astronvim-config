@@ -254,6 +254,21 @@ return {
   },
 
   {
+    "leoluz/nvim-dap-go",
+    ft = "go",
+    opts = {},
+  },
+
+  {
+    "mfussenegger/nvim-dap-python",
+    dependencies = "mfussenegger/nvim-dap",
+    ft = "python", -- NOTE: ft: lazy-load on filetype
+    config = function(_, opts) 
+      -- require('dap.ext.vscode').load_launchjs(nil, { python = {'py'} })
+    end,
+  },
+
+  {
     "Pocco81/auto-save.nvim",
     config = function()
       require("auto-save").setup {
@@ -297,7 +312,7 @@ return {
   --   event = "BufReadPre", -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
   --   config = function() require("symbol-usage").setup() end,
   -- },
-
+  --
   {
     "linux-cultist/venv-selector.nvim",
     dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
@@ -334,11 +349,26 @@ return {
       telescope.load_extension "media_files"
     end,
   },
+
+  {
+    "TobinPalmer/Tip.nvim",
+    event = "VimEnter",
+    init = function()
+      -- Default config
+      --- @type Tip.config
+      require("tip").setup({
+        title = "Tip!",
+        url = "https://vtip.43z.one",
+      })
+    end,
+  },
+  
   -- 3-way of merging
   -- { "tpope/vim-fugitive" },
   -- saving sessions
   -- { "tpope/vim-obsession" },
 
-  -- https://github.com/FabijanZulj/blame.nvim or https://www.reddit.com/r/neovim/comments/15qsa02/blamenvim_fugitive_style_git_blame/?utm_source=share&utm_medium=web2x&context=3
+  -- https://github.com/FabijanZulj/blame.nvim
+  -- https://www.reddit.com/r/neovim/comments/15qsa02/blamenvim_fugitive_style_git_blame/?utm_source=share&utm_medium=web2x&context=3
   { "FabijanZulj/blame.nvim" },
 }
