@@ -25,6 +25,7 @@ return {
   { import = "astrocommunity.register.nvim-neoclip-lua" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
+  { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
 
   -- { import = "astrocommunity.utility.noice-nvim" },
 

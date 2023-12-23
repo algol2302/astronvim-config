@@ -1,6 +1,6 @@
 return {
   cmd = { "gopls", "serve" },
-  filetypes = { "go", "gomod" },
+  filetypes = { "go", "gomod", "work" },
   root_dir = require("lspconfig/util").root_pattern("go.work", "go.mod", ".git"),
   capabilities = vim.lsp.protocol.make_client_capabilities(),
   settings = {

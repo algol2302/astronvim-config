@@ -14,7 +14,9 @@ return {
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     config.sources = {
       -- Set a formatter
-      -- null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.isort,
+      null_ls.builtins.formatting.black,
       -- null_ls.builtins.formatting.prettier,
       null_ls.builtins.diagnostics.sqlfluff.with {
         extra_args = { "--dialect", "postgres" }, -- change to your dialect
@@ -30,7 +32,11 @@ return {
       -- null_ls.builtins.code_actions.cspell.with {
       --   config = shared_config,
       -- },
+      null_ls.builtins.diagnostics.protolint,
+      null_ls.builtins.formatting.protolint,
+      null_ls.builtins.diagnostics.protoc_gen_lint,
     }
+
     return config -- return final config table
   end,
 }
