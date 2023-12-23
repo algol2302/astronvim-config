@@ -263,7 +263,7 @@ return {
     "mfussenegger/nvim-dap-python",
     dependencies = "mfussenegger/nvim-dap",
     ft = "python", -- NOTE: ft: lazy-load on filetype
-    config = function(_, opts) 
+    config = function(_, opts)
       -- require('dap.ext.vscode').load_launchjs(nil, { python = {'py'} })
     end,
   },
@@ -356,13 +356,13 @@ return {
     init = function()
       -- Default config
       --- @type Tip.config
-      require("tip").setup({
+      require("tip").setup {
         title = "Tip!",
         url = "https://vtip.43z.one",
-      })
+      }
     end,
   },
-  
+
   -- 3-way of merging
   -- { "tpope/vim-fugitive" },
   -- saving sessions

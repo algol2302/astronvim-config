@@ -136,7 +136,6 @@ return {
     --   },
     -- }
     vim.api.nvim_create_autocmd({ "UIEnter" }, {
-      -- "<cmd>Neotree<cr><cmd>setlocal nospell<cr>",
       desc = "Show file explorer on startup",
       callback = function()
         vim.cmd [[Neotree]]
