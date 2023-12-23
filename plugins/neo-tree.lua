@@ -142,7 +142,7 @@ return {
           -- },
           -- hide_hidden = false,
         },
-        follow_current_file = { enabled = false, leave_dirs_open = true },
+        follow_current_file = { enabled = true, leave_dirs_open = true },
         hijack_netrw_behavior = "open_current",
         use_libuv_file_watcher = true,
         bind_to_cwd = false, -- true creates a 2-way binding between vim's cwd and neo-tree's root
