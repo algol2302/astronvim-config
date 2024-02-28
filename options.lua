@@ -31,6 +31,7 @@ return {
     -- sonokai_better_performance = 1,
     sonokai_enable_italic = 1,
     -- sonokai_diagnostic_text_highlight = 1,
+    -- tabby_keybinding_accept = "<Tab>",
   },
 }
 -- If you need more control, you can use the function()...end notation

@@ -67,7 +67,7 @@ return {
   -- colorscheme = "monokai-pro",
   -- colorscheme = "github_dark",
   -- colorscheme = "everforest",
-  --
+  -- colorscheme = "hybrid",
   -- colorscheme = "monokai-nightasty",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on

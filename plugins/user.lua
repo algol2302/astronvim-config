@@ -167,7 +167,18 @@ return {
     config = function() require("lsp_signature").setup() end,
   },
 
-  { "johmsalas/text-case.nvim", config = function() require("textcase").setup {} end },
+  {
+    "johmsalas/text-case.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("textcase").setup {}
+      require("telescope").load_extension "textcase"
+    end,
+    keys = {
+      "ga", -- Default invocation prefix
+      { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "v" }, desc = "Telescope" },
+    },
+  },
 
   {
     "folke/todo-comments.nvim",
@@ -358,10 +369,16 @@ return {
       --- @type Tip.config
       require("tip").setup {
         title = "Tip!",
-        url = "https://vtip.43z.one",
+        url = "https://vimiscool.tech/neotip",
       }
     end,
   },
+
+  -- {
+  --   "TabbyML/vim-tabby",
+  --   cmd = "Tabby",
+  --   lazy = false, -- < This fixed the issue and load Tabby properly
+  -- },
 
   -- 3-way of merging
   -- { "tpope/vim-fugitive" },
