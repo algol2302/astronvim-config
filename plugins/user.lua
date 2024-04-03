@@ -348,6 +348,11 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = { -- add a new dependency to telescope that is our new plugin
       "nvim-telescope/telescope-media-files.nvim",
+      -- telescope history of commit for current file:
+      {
+        "isak102/telescope-git-file-history.nvim",
+        dependencies = { "tpope/vim-fugitive" },
+      },
     },
     -- the first parameter is the plugin specification
     -- the second is the table of options as set up in Lazy with the `opts` key
