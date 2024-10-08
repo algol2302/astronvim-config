@@ -98,15 +98,15 @@ return {
         -- ["<leader>gm"] = { "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle current line blame" },
         ["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" },
         ["<leader>td"] = {
-          function() require("astrocore").toggle_term_cmd "lazydocker" end,
+          function() require("astrocore").toggle_term_cmd { cmd = "lazydocker", direction = "float" } end,
           desc = "ToggleTerm lazydocker",
         },
         ["<leader>tg"] = {
-          function() require("astrocore").toggle_term_cmd "gitui" end,
+          function() require("astrocore").toggle_term_cmd { cmd = "gitui", direction = "float" } end,
           desc = "ToggleTerm gitui",
         },
         ["<leader>tk"] = {
-          function() require("astrocore").toggle_term_cmd "k9s" end,
+          function() require("astrocore").toggle_term_cmd { cmd = "k9s", direction = "float" } end,
           desc = "ToggleTerm k9s",
         },
         ["<leader>tf"] = { "<cmd>ToggleTerm direction=float<cr><cmd>setlocal nospell<cr>", desc = "ToggleTerm float" },
