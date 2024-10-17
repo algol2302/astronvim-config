@@ -1,3 +1,21 @@
+require("lspconfig.configs").protobuf_language_server = {
+  default_config = {
+    cmd = { "protobuf-language-server" },
+    filetypes = { "proto", "cpp" },
+    root_fir = require("lspconfig.util").root_pattern ".git",
+    single_file_support = true,
+    settings = {
+      ["additional-proto-dirs"] = {
+        -- path to additional protobuf directories
+        "vendor",
+        "vendor.protogen",
+        -- "third_party",
+      },
+    },
+  },
+}
+require("lspconfig").protobuf_language_server.setup {}
+
 return {
   -- "AstroNvim/astrolsp",
   -- -- https://github.com/lasorda/protobuf-language-server
