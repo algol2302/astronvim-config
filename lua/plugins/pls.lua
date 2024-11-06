@@ -11,7 +11,7 @@ return {
       --   -- this must be a function to get access to the `lspconfig` module
       protobuf_language_server = {
         cmd = { "protobuf-language-server" },
-        filetypes = { "proto", "cpp" },
+        filetypes = { "proto" },
         root_dir = require("lspconfig.util").root_pattern ".git",
         single_file_support = true,
         settings = {
