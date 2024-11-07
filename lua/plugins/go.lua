@@ -167,7 +167,7 @@ return {
           enable = false,
           -- hint style, set to 'eol' for end-of-line hints, 'inlay' for inline hints
           -- inlay only available for 0.10.x
-          style = "inlay",
+          style = "eol",
           -- Note: following setup only works for style = 'eol', you do not need to set it for 'inlay'
           -- Only show inlay hints for the current line
           only_current_line = true,
