@@ -1,6 +1,6 @@
 return {
   "AstroNvim/astrolsp",
-  -- https://github.com/coder3101/protocols
+  -- https://github.com/coder3101/protols
 
   ---@type AstroLSPOpts
   -- opts = function(plugin, opts)
