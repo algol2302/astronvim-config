@@ -1,10 +1,5 @@
 return {
   {
-    "AstroNvim/astrocore",
-    ---@type AstroCoreOpts
-  },
-  -- customize cmp mappings
-  {
     "nvim-neo-tree/neo-tree.nvim",
     -- override the options table that is used
     opts = function(_, opts)
@@ -28,6 +23,9 @@ return {
         -- },
         -- hide_hidden = false,
       }
+      opts.hijack_netrw_behavior = "open_current"
+      opts.use_libuv_file_watcher = vim.fn.has "win32" ~= 1
+      opts.bind_to_cwd = false -- true creates a 2-way binding between vim's cwd and neo-tree's root
     end,
   },
 }
