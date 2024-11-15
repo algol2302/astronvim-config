@@ -24,6 +24,11 @@ return {
         -- hide_hidden = false,
       }
       opts.hijack_netrw_behavior = "open_current"
+      -- "open_default" -- netrw disabled, opening a directory opens neo-tree
+      -- in whatever position is specified in window.position
+      -- "open_current", -- netrw disabled, opening a directory opens within the
+      -- window like netrw would, regardless of window.position
+      -- "disabled",     -- netrw left alone, neo-tree does not handle opening dirs
       opts.use_libuv_file_watcher = vim.fn.has "win32" ~= 1
       opts.bind_to_cwd = false -- true creates a 2-way binding between vim's cwd and neo-tree's root
     end,

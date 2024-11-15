@@ -115,11 +115,6 @@ return {
   },
 
   {
-    "FabijanZulj/blame.nvim",
-    config = function() require("blame").setup() end,
-  },
-
-  {
     "johmsalas/text-case.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
