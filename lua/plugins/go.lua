@@ -17,7 +17,7 @@ return {
                   preselectSupport = true,
                   insertReplaceSupport = true,
                   labelDetailsSupport = true,
-                  snippetSupport = vim.snippet and true or false,
+                  snippetSupport = true,
                   resolveSupport = {
                     properties = {
                       "edit",
