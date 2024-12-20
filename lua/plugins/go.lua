@@ -69,7 +69,7 @@ return {
                 useany = true,
                 unusedresult = true,
                 composites = false,
-                fieldalignment = true,
+                -- fieldalignment = true,
                 unusedvariable = true,
               },
               codelenses = {
@@ -270,17 +270,27 @@ return {
     "williamboman/mason-lspconfig.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "gopls" })
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+        "gopls",
+        -- version = "v0.16.2", -- the last version with fieldalignment
+      })
     end,
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(
-        opts.ensure_installed,
-        { "delve", "gopls", "gomodifytags", "iferr", "impl", "goimports" }
-      )
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+        "delve",
+        {
+          "gopls",
+          -- version = "v0.16.2", -- the last version with fieldalignment
+        },
+        "gomodifytags",
+        "iferr",
+        "impl",
+        "goimports",
+      })
     end,
   },
   {
