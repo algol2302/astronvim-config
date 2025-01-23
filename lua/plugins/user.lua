@@ -273,6 +273,10 @@ return {
     end,
   },
 
+  {
+    "hat0uma/csvview.nvim",
+    config = function() require("csvview").setup() end,
+  },
   -- {
   --   "chrisgrieser/nvim-lsp-endhints",
   --   event = "LspAttach",
