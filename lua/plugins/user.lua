@@ -274,6 +274,12 @@ return {
   },
 
   {
+    "NStefan002/speedtyper.nvim",
+    branch = "v2",
+    lazy = false,
+  },
+
+  {
     "hat0uma/csvview.nvim",
     config = function() require("csvview").setup() end,
   },
