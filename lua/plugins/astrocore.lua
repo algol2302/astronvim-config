@@ -21,9 +21,10 @@ return {
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
       virtual_text = {
-        source = "always", -- Or "if_many"
+        source = true, -- Or "if_many"
         prefix = "⚠", -- Could be '■', '▎', 'x'
       },
+      -- virtual_lines = true,
       underline = true,
       severity_sort = true,
     },
