@@ -7,7 +7,6 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
   -- import/override with your plugins folder
-
   -- { import = "astrocommunity.colorscheme.vscode-nvim" },
   -- { import = "astrocommunity.colorscheme.onedarkpro-nvim" },
   -- { import = "astrocommunity.colorscheme.everforest" },
@@ -28,7 +27,6 @@ return {
   { import = "astrocommunity.git.diffview-nvim" },
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
-  { import = "astrocommunity.completion.blink-cmp" },
   { import = "astrocommunity.register.nvim-neoclip-lua" },
   -- { import = "astrocommunity.search.nvim-spectre" },
   { import = "astrocommunity.search.grug-far-nvim" },

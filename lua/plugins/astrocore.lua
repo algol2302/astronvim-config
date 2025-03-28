@@ -10,23 +10,17 @@ return {
   opts = {
     -- Configure core features of AstroNvim
     features = {
-      -- large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
-      large_buf = false,
+      large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
       autopairs = true, -- enable autopairs at start
       cmp = true, -- enable completion at start
-      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+      diagnostics = { virtual_text = true, virtual_lines = false }, -- diagnostic settings on startup
       highlighturl = true, -- highlight URLs at start
       notifications = true, -- enable notifications at start
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
-      virtual_text = {
-        source = true, -- Or "if_many"
-        prefix = "⚠", -- Could be '■', '▎', 'x'
-      },
-      -- virtual_lines = true,
+      virtual_text = true,
       underline = true,
-      severity_sort = true,
     },
     -- vim options can be configured here
     options = {
@@ -52,13 +46,6 @@ return {
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
-        autoformat_enabled = true, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
-        cmp_enabled = true, -- enable completion at start
-        autopairs_enabled = true, -- enable autopairs at start
-        diagnostics_mode = 3, -- set the visibility of diagnostics in the UI (0=off, 1=only show in status line, 2=virtual text off, 3=all on)
-        icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
-        ui_notifications_enabled = true, -- disable notifications when toggling UI elements
-        -- tabby_keybinding_accept = "<Tab>",
       },
       o = {
         background = "light",
@@ -71,33 +58,19 @@ return {
       n = {
         -- second key is the lefthand side of the map
 
-        -- navigate buffer tabs with `H` and `L`
-        L = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
-        H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+        -- navigate buffer tabs
+        ["]b"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
+        ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
 
         -- mappings seen under group name "Buffer"
-        ["<Leader>bD"] = {
+        ["<Leader>bd"] = {
           function()
             require("astroui.status.heirline").buffer_picker(
               function(bufnr) require("astrocore.buffer").close(bufnr) end
             )
           end,
-          desc = "Pick to close",
+          desc = "Close buffer from tabline",
         },
-        -- tables with just a `desc` key will be registered with which-key if it's installed
-        -- this is useful for naming menus
-        ["<Leader>b"] = { desc = "Buffers" },
-        -- quick save
-        -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
-        ["<Leader>c"] = {
-          function()
-            local bufs = vim.fn.getbufinfo { buflisted = true }
-            require("astrocore.buffer").close(0)
-            if require("astrocore").is_available "alpha-nvim" and not bufs[2] then require("alpha").start(true) end
-          end,
-          desc = "Close buffer",
-        },
-        -- ["<leader>gm"] = { "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle current line blame" },
         ["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" },
         ["<leader>td"] = {
           function() require("astrocore").toggle_term_cmd { cmd = "lazydocker", direction = "float" } end,
@@ -142,10 +115,22 @@ return {
         ["<leader>fp"] = { "<cmd>Telescope projects<cr>", desc = "Find a project" },
         ["<leader>f;"] = { "<cmd>vimgrep /t.Run(/g %<cr><cr>", desc = "Show all go subtests in quickfix list" },
         ["<leader>gh"] = { "<cmd>Telescope git_file_history<cr>", desc = "Show current file commits" },
-      },
-      t = {
+
+        -- tables with just a `desc` key will be registered with which-key if it's installed
+        -- this is useful for naming menus
+        -- ["<Leader>b"] = { desc = "Buffers" },
+
         -- setting a mapping to false will disable it
-        -- ["<esc>"] = false,
+        -- ["<C-S>"] = false,
+
+        -- ["<Leader>c"] = {
+        --   function()
+        --     local bufs = vim.fn.getbufinfo { buflisted = true }
+        --     require("astrocore.buffer").close(0)
+        --     if not bufs[2] then require("snacks").dashboard() end
+        --   end,
+        --   desc = "Close buffer",
+        -- },
       },
     },
   },
