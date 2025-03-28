@@ -21,6 +21,7 @@ return {
 
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
+  { import = "astrocommunity.editing-support.auto-save-nvim" },
   { import = "astrocommunity.recipes.telescope-nvchad-theme" },
   { import = "astrocommunity.recipes.telescope-lsp-mappings" },
   -- { import = "astrocommunity.recipes.auto-session-restore" },
