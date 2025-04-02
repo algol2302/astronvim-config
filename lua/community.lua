@@ -36,5 +36,4 @@ return {
   { import = "astrocommunity.project.project-nvim" },
   { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
   { import = "astrocommunity.utility.mason-tool-installer-nvim" },
-  { import = "astrocommunity.utility.hover-nvim" },
 }
