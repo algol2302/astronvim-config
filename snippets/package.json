@@ -6,7 +6,7 @@
   "contributes": {
     "snippets": [
       {
-        "language": "golang",
+        "language": "go",
         "path": "./go.json"
       }
     ]
