@@ -71,6 +71,9 @@ return {
                 composites = false,
                 -- fieldalignment = true,
                 unusedvariable = true,
+                framepointer = true,
+                sigchanyzer = true,
+                stdversion = true,
               },
               codelenses = {
                 gc_details = true, -- Show a code lens toggling the display of gc's choices.
@@ -80,6 +83,7 @@ return {
                 tidy = true,
                 upgrade_dependency = true,
                 vendor = true,
+                run_govulncheck = true,
               },
               hints = {
                 assignVariableTypes = true,
