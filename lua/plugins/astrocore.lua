@@ -114,7 +114,6 @@ return {
         },
         ["<leader>fp"] = { "<cmd>Telescope projects<cr>", desc = "Find a project" },
         ["<leader>f;"] = { "<cmd>vimgrep /t.Run(/g %<cr><cr>", desc = "Show all go subtests in quickfix list" },
-        ["<leader>gh"] = { "<cmd>Telescope git_file_history<cr>", desc = "Show current file commits" },
 
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
