@@ -258,6 +258,11 @@ return {
       }
     end,
   },
+
+  {
+    "sphamba/smear-cursor.nvim",
+    opts = {},
+  },
   -- {
   --   "chrisgrieser/nvim-lsp-endhints",
   --   event = "LspAttach",
