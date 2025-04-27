@@ -21,12 +21,12 @@ return {
 
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
+  { import = "astrocommunity.editing-support.text-case-nvim" },
   { import = "astrocommunity.recipes.picker-nvchad-theme" },
   { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
   { import = "astrocommunity.git.diffview-nvim" },
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
-  { import = "astrocommunity.register.nvim-neoclip-lua" },
   { import = "astrocommunity.search.grug-far-nvim" },
   { import = "astrocommunity.motion.leap-nvim" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
