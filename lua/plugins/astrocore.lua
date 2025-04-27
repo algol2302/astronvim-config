@@ -112,7 +112,6 @@ return {
           "<cmd>Neotree filesystem reveal left reveal_force_cwd<cr>",
           desc = "Toggle current file dir",
         },
-        ["<leader>fp"] = { "<cmd>Telescope projects<cr>", desc = "Find a project" },
         ["<leader>f;"] = { "<cmd>vimgrep /t.Run(/g %<cr><cr>", desc = "Show all go subtests in quickfix list" },
 
         -- tables with just a `desc` key will be registered with which-key if it's installed
