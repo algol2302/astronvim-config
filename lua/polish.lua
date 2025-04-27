@@ -15,6 +15,17 @@ vim.filetype.add {
   },
 }
 
+vim.api.nvim_create_user_command(
+  "AstroRootInfo",
+  function() require("astrocore.rooter").info() end,
+  { desc = "Display rooter information" }
+)
+vim.api.nvim_create_user_command(
+  "AstroRoot",
+  function() require("astrocore.rooter").root() end,
+  { desc = "Run root detection" }
+)
+
 -- neo-tree on start up
 -- vim.api.nvim_create_augroup("neotree_autoopen", { clear = true })
 -- vim.api.nvim_create_autocmd("BufRead", { -- Changed from BufReadPre
