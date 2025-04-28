@@ -12,14 +12,14 @@ return {
         -- "lsp", -- highest priority is getting workspace from running language servers
         -- { ".git", "_darcs", ".hg", ".bzr", ".svn", "go.work", "go.mod" }, -- next check for a version controlled parent directory
         -- { "lua", "MakeFile", "package.json" }, -- lastly check for known project root files
-        "lsp", -- highest priority is getting workspace from running language servers
-        { ".git", "go.work", "go.mod" }, -- next check for a version controlled parent directory
+        { ".git", "go.work", "go.mod" },
+        "lsp",
         {
           "go",
           -- "lua",
           "MakeFile",
           -- "package.json",
-        }, -- lastly check for known project root files
+        },
       },
       -- ignore things from root detection
       ignore = {
@@ -27,7 +27,7 @@ return {
         dirs = {}, -- list of directory patterns (Ex. { "~/.cargo/*" })
       },
       -- automatically update working directory (update manually with `:AstroRoot`)
-      autochdir = true,
+      autochdir = false,
       -- scope of working directory to change ("global"|"tab"|"win")
       scope = "global",
       -- show notification on every working directory change
