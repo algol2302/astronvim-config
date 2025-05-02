@@ -22,6 +22,7 @@ return {
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
   { import = "astrocommunity.editing-support.text-case-nvim" },
+  { import = "astrocommunity.completion.tabby-nvim" },
   { import = "astrocommunity.recipes.picker-nvchad-theme" },
   { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
   { import = "astrocommunity.git.diffview-nvim" },
