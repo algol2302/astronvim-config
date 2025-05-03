@@ -258,9 +258,15 @@ return {
   --   config = true,
   -- },
   --
-  -- {
-  --   "TabbyML/vim-tabby",
-  --   cmd = "Tabby",
-  --   lazy = false, -- < This fixed the issue and load Tabby properly
-  -- },
+  {
+    "TabbyML/vim-tabby",
+    lazy = false, -- < This fixed the issue and load Tabby properly
+    init = function()
+      vim.g.tabby_agent_start_command = { "npx", "tabby-agent", "--stdio" }
+      vim.g.tabby_inline_completion_trigger = "auto"
+      vim.g.tabby_inline_completion_keybinding_accept = "<C-e>"
+      vim.g.tabby_keybinding_trigger_or_dismiss = "<C-\\>"
+      -- vim.g.tabby_inline_completion_insertion_leading_key = "<C-g>"
+    end,
+  },
 }
