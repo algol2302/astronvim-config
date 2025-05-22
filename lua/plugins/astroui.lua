@@ -76,6 +76,7 @@ return {
           green = "#3e6f39",
           blue = "#244ab2",
           cyan = "#448d97",
+          highlight = "#d3d3d3", -- "#EAEBED"
         },
       }
     end,
