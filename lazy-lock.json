@@ -27,7 +27,7 @@
   "indent-rainbowline.nvim": { "branch": "master", "commit": "572e8157de85d7af3f0085b5c74c059518900649" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lazydev.nvim": { "branch": "main", "commit": "f59bd14a852ca43db38e3662395354cb2a9b13e0" },
-  "leap.nvim": { "branch": "main", "commit": "653d507c8ac67d76bda2de2cadcb94229fdb02a4" },
+  "leap.nvim": { "branch": "main", "commit": "0f7d34d9e67d4b52d579d8fd59846f0e1c43bd36" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "1a31f824b9cd5bc6f342fc29e9a53b60d74af245" },
   "mason-null-ls.nvim": { "branch": "main", "commit": "2b8433f76598397fcc97318d410e0c4f7a4bea6a" },
   "mason-nvim-dap.nvim": { "branch": "main", "commit": "4c2cdc69d69fe00c15ae8648f7e954d99e5de3ea" },
