@@ -247,6 +247,8 @@ return {
     end,
   },
 
+  { "tpope/vim-obsession" },
+
   -- {
   --   "chrisgrieser/nvim-lsp-endhints",
   --   event = "LspAttach",
