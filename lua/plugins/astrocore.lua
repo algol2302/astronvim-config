@@ -115,6 +115,8 @@ return {
         },
         ["<leader>f;"] = { "<cmd>vimgrep /t.Run(/g %<cr><cr>", desc = "Show all go subtests in quickfix list" },
 
+        ["<leader>ai"] = { "<cmd>CodeCompanionActions<cr>", desc = "Code companion actions" },
+
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         -- ["<Leader>b"] = { desc = "Buffers" },
