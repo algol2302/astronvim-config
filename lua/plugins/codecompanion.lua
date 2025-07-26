@@ -2,6 +2,11 @@ return {
   {
     "codecompanion.nvim",
     opts = {
+      -- dependencies = {
+      --   "nvim-lua/plenary.nvim",
+      --   "nvim-treesitter/nvim-treesitter",
+      -- "ravitemer/mcphub.nvim",
+      -- },
       adapters = {
         bothub = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
@@ -14,7 +19,8 @@ return {
             },
             schema = {
               model = {
-                default = "o4-mini-high", -- define llm model to be used
+                default = "qwen3-235b-a22b:free",
+                -- default = "o4-mini-high", -- define llm model to be used
                 -- default = "deepseek-r1-671b", -- define llm model to be used
               },
               temperature = {
@@ -63,6 +69,14 @@ return {
           })
         end,
       },
+      -- mcphub = {
+      --   callback = "mcphub.extensions.codecompanion",
+      --   opts = {
+      --     make_vars = true,
+      --     make_slash_commands = true,
+      --     show_result_in_chat = true,
+      --   },
+      -- },
       strategies = {
         chat = {
           adapter = "bothub",
