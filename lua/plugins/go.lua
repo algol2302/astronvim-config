@@ -59,6 +59,7 @@ return {
               analyses = {
                 ST1000 = false,
                 ST1003 = true,
+                ST1020 = false,
                 fillreturns = true,
                 nilness = true,
                 nonewvars = true,
