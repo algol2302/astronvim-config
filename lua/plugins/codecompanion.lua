@@ -20,7 +20,7 @@ return {
             },
             schema = {
               model = {
-                default = "qwen3-235b-a22b:free",
+                default = "qwen3-235b-a22b",
                 -- default = "o4-mini-high", -- define llm model to be used
                 -- default = "deepseek-r1-671b", -- define llm model to be used
               },
