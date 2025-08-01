@@ -15,7 +15,7 @@ return {
             env = {
               url = "https://bothub.chat/api/v2", -- optional: default value is ollama url http://127.0.0.1:11434
               api_key = "cmd: gpg --batch --quiet --decrypt ~/.config/nvim/bothub_api_key.gpg",
-              -- chat_url = "/v1/chat/completions", -- optional: default value, override if different
+              chat_url = "/openai/v1/chat/completions", -- optional: default value, override if different
               -- models_endpoint = "/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
               -- models_endpoint = "https://bothub.chat/api/v2/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
             },
