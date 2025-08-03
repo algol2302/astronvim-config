@@ -83,7 +83,7 @@ return {
             },
             schema = {
               model = {
-                default = "gpt://" .. secret.load "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt",
+                default = "gpt://" .. secret.load "~/.config/nvim/ya_dir.gpg" .. "/qwen3-235b-a22b-fp8/latest",
               },
               temperature = {
                 order = 2,
