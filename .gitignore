@@ -2,3 +2,7 @@ spell
 bothub_api_key
 bothub_api_key.gpg
 .env
+ya_dir
+ya_api_key
+ya_dir.gpg
+ya_api_key.gpg
