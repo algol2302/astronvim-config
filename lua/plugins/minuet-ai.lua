@@ -16,7 +16,8 @@ return {
       },
     },
     config = function()
-      local secret = require "helpers.secret"
+      local api_key = require "helpers.secret"
+      local ya_dir = require "helpers.secret"
       require("minuet").setup {
         lsp = {
           enabled_ft = { "toml", "lua", "cpp", "go" },
@@ -50,14 +51,17 @@ return {
         request_timeout = 2.5,
         throttle = 1500, -- Increase to reduce costs and avoid rate limits
         debounce = 600, -- Increase to reduce costs and avoid rate limits
-
         provider_options = {
           openai_compatible = {
-            api_key = function() return secret.load "~/.config/nvim/bothub_api_key.gpg" end,
-            end_point = "https://bothub.chat/api/v2/openai/v1/chat/completions",
-            model = "deepseek-chat-v3-0324",
+            -- api_key = function() return secret.load "~/.config/nvim/bothub_api_key.gpg" end,
+            -- end_point = "https://bothub.chat/api/v2/openai/v1/chat/completions",
+            -- model = "deepseek-chat-v3-0324",
+            -- name = "Bothub",
+            api_key = function() return api_key.load "~/.config/nvim/ya_api_key.gpg" end,
+            end_point = "https://llm.api.cloud.yandex.net/v1/chat/completions",
+            model = "gpt://" .. ya_dir.load "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt-lite",
+            name = "YandexGPT-Lite",
             stream = true,
-            name = "Bothub",
             optional = {
               max_tokens = 100,
               top_p = 0.9,
