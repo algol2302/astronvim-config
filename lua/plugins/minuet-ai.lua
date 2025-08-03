@@ -20,35 +20,35 @@ return {
         lsp = {
           enabled_ft = { "toml", "lua", "cpp", "go" },
           -- Enables automatic completion triggering using `vim.lsp.completion.enable`
-          enabled_auto_trigger_ft = { "cpp", "lua", "go" },
+          -- enabled_auto_trigger_ft = { "cpp", "lua", "go" },
         },
-        -- keymap = {
-        --   -- Manually invoke minuet completion.
-        --   ["<A-y>"] = require("minuet").make_blink_map(),
-        -- },
-        -- sources = {
-        --   -- Enable minuet for autocomplete
-        --   default = { "lsp", "path", "buffer", "snippets", "minuet" },
-        --   -- default = { "lsp", "path", "buffer", "snippets" },
-        --   -- For manual completion only, remove 'minuet' from default
-        --   providers = {
-        --     minuet = {
-        --       name = "minuet",
-        --       module = "minuet.blink",
-        --       async = true,
-        --       -- Should match minuet.config.request_timeout * 1000,
-        --       -- since minuet.config.request_timeout is in seconds
-        --       timeout_ms = 2000,
-        --       score_offset = 50, -- Gives minuet higher priority among suggestions
-        --     },
-        --   },
-        -- },
+        keymap = {
+          -- Manually invoke minuet completion.
+          ["<C-y>"] = require("minuet").make_blink_map(),
+        },
+        sources = {
+          -- Enable minuet for autocomplete
+          default = { "lsp", "path", "buffer", "snippets", "minuet" },
+          -- default = { "lsp", "path", "buffer", "snippets" },
+          -- For manual completion only, remove 'minuet' from default
+          providers = {
+            minuet = {
+              name = "minuet",
+              module = "minuet.blink",
+              async = true,
+              -- Should match minuet.config.request_timeout * 1000,
+              -- since minuet.config.request_timeout is in seconds
+              timeout_ms = 2000,
+              score_offset = 50, -- Gives minuet higher priority among suggestions
+            },
+          },
+        },
         -- Recommended to avoid unnecessary request
         completion = { trigger = { prefetch_on_insert = false } },
         provider = "openai_compatible",
         request_timeout = 2.5,
         throttle = 1500, -- Increase to reduce costs and avoid rate limits
-        debounce = 600, -- Increase to reduce costs and avoid rate limits
+        debounce = 300, -- Increase to reduce costs and avoid rate limits
         provider_options = {
           openai_compatible = {
             -- api_key = function() return secret.load "~/.config/nvim/bothub_api_key.gpg" end,
