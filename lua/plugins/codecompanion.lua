@@ -1,5 +1,3 @@
-local secret = require "helpers.secret"
-
 return {
   {
     "codecompanion.nvim",
@@ -13,10 +11,11 @@ return {
         show_defaults = true,
         show_model_choices = false,
         bothub = function()
+          local bothub_api_key = require "helpers.secret"
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
               url = "https://bothub.chat/api/v2", -- optional: default value is ollama url http://127.0.0.1:11434
-              api_key = secret.load "~/.config/nvim/bothub_api_key.gpg",
+              api_key = bothub_api_key.load "~/.config/nvim/bothub_api_key.gpg",
               chat_url = "/openai/v1/chat/completions", -- optional: default value, override if different
               -- models_endpoint = "/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
               -- models_endpoint = "https://bothub.chat/api/v2/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
@@ -73,17 +72,19 @@ return {
           })
         end,
         yandex_gpt = function()
+          local ya_api_key = require "helpers.secret"
+          local ya_dir = require "helpers.secret"
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
               url = "https://llm.api.cloud.yandex.net",
-              api_key = secret.load "~/.config/nvim/ya_api_key.gpg",
+              api_key = ya_api_key.load "~/.config/nvim/ya_api_key.gpg",
               -- chat_url = "/openai/v1/chat/completions", -- optional: default value, override if different
               -- models_endpoint = "/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
               -- models_endpoint = "https://bothub.chat/api/v2/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
             },
             schema = {
               model = {
-                default = "gpt://" .. secret.load "~/.config/nvim/ya_dir.gpg" .. "/qwen3-235b-a22b-fp8/latest",
+                default = "gpt://" .. ya_dir.load "~/.config/nvim/ya_dir.gpg" .. "/qwen3-235b-a22b-fp8/latest",
               },
               temperature = {
                 order = 2,
