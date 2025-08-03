@@ -16,6 +16,7 @@ return {
       },
     },
     config = function()
+      local secret = require "helpers.secret"
       require("minuet").setup {
         lsp = {
           enabled_ft = { "toml", "lua", "cpp", "go" },
@@ -52,13 +53,7 @@ return {
 
         provider_options = {
           openai_compatible = {
-            api_key = function()
-              local handle, err = io.popen("gpg --batch --quiet --decrypt ~/.config/nvim/bothub_api_key.gpg", "r")
-              if not handle then error("Failed to start GPG: " .. (err or "unknown error")) end
-              local result = handle:read "*a"
-              handle:close()
-              return result:gsub("\n", "")
-            end,
+            api_key = function() return secret.load "~/.config/nvim/bothub_api_key.gpg" end,
             end_point = "https://bothub.chat/api/v2/openai/v1/chat/completions",
             model = "deepseek-chat-v3-0324",
             stream = true,
