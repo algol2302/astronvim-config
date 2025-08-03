@@ -20,11 +20,8 @@ return {
         lsp = {
           enabled_ft = { "toml", "lua", "cpp", "go" },
           -- Enables automatic completion triggering using `vim.lsp.completion.enable`
-          -- enabled_auto_trigger_ft = { "cpp", "lua", "go" },
-        },
-        keymap = {
-          -- Manually invoke minuet completion.
-          ["<C-y>"] = require("minuet").make_blink_map(),
+          enabled_auto_trigger_ft = { "cpp", "lua", "go" },
+          warn_on_blink_or_cmp = false,
         },
         sources = {
           -- Enable minuet for autocomplete
@@ -51,16 +48,14 @@ return {
         debounce = 300, -- Increase to reduce costs and avoid rate limits
         provider_options = {
           openai_compatible = {
-            -- api_key = function() return secret.load "~/.config/nvim/bothub_api_key.gpg" end,
-            -- end_point = "https://bothub.chat/api/v2/openai/v1/chat/completions",
-            -- model = "deepseek-chat-v3-0324",
-            -- name = "Bothub",
-
-            api_key = function() return require("helpers.secret").load "~/.config/nvim/ya_api_key.gpg" end,
-            end_point = "https://llm.api.cloud.yandex.net/v1/chat/completions",
-            model = "gpt://" .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt-lite",
-            name = "YandexGPT-Lite",
-
+            api_key = function() return require("helpers.secret").load "~/.config/nvim/bothub_api_key.gpg" end,
+            end_point = "https://bothub.chat/api/v2/openai/v1/chat/completions",
+            model = "deepseek-chat-v3-0324",
+            name = "Bothub",
+            -- api_key = function() return require("helpers.secret").load "~/.config/nvim/ya_api_key.gpg" end,
+            -- end_point = "https://llm.api.cloud.yandex.net/v1/chat/completions",
+            -- model = "gpt://" .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt-lite",
+            -- name = "YandexGPT-Lite",
             stream = true,
             optional = {
               max_tokens = 100,
@@ -76,7 +71,6 @@ return {
   },
   { "nvim-lua/plenary.nvim" },
   -- optional, if you are using virtual-text frontend, nvim-cmp is not
-  --
   -- required.
   -- { "hrsh7th/nvim-cmp" },
   -- optional, if you are using virtual-text frontend, blink is not required.
