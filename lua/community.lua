@@ -30,7 +30,7 @@ return {
   { import = "astrocommunity.git.blame-nvim" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
   { import = "astrocommunity.search.grug-far-nvim" },
-  { import = "astrocommunity.motion.leap-nvim" },
+  { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
   { import = "astrocommunity.project.project-nvim" },
   { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
