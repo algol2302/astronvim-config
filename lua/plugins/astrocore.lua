@@ -104,7 +104,7 @@ return {
         },
         ["<leader>lw"] = {
           function() vim.cmd "silent! wa" end,
-          desc = "Save all renamed buffers",
+          desc = "Save all changed buffers",
         },
         ["<leader>gm"] = { "<cmd>BlameToggle virtual<cr>", desc = "Toggle blame right" },
         ["<leader>gB"] = { "<cmd>BlameToggle<cr>", desc = "Toggle blame window" },
@@ -114,8 +114,6 @@ return {
           desc = "Toggle current file dir",
         },
         ["<leader>f;"] = { "<cmd>vimgrep /t.Run(/g %<cr><cr>", desc = "Show all go subtests in quickfix list" },
-
-        -- ["<leader>ai"] = { "<cmd>CodeCompanionActions<cr>", desc = "Code companion actions" },
 
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus

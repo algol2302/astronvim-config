@@ -1,20 +1,6 @@
 return {
   {
     "milanglacier/minuet-ai.nvim",
-    keys = {
-      {
-        "<leader>Me",
-        "<cmd>Minuet lsp attach<CR>",
-        mode = "n",
-        desc = "Enable Minuet autocompletion",
-      },
-      {
-        "<leader>Md",
-        "<cmd>Minuet lsp detach<CR>",
-        mode = "n",
-        desc = "Enable Minuet autocompletion",
-      },
-    },
     config = function()
       require("minuet").setup {
         lsp = {
@@ -75,4 +61,17 @@ return {
   -- { "hrsh7th/nvim-cmp" },
   -- optional, if you are using virtual-text frontend, blink is not required.
   { "Saghen/blink.cmp" },
+
+  { "AstroNvim/astroui", opts = { icons = { Minuet = "󱙺" } } },
+  {
+    "AstroNvim/astrocore",
+    opts = function(_, opts)
+      local prefix = "<Leader>M"
+      if not opts.mappings then opts.mappings = {} end
+      opts.mappings.n = opts.mappings.n or {}
+      opts.mappings.n[prefix] = { desc = require("astroui").get_icon("Minuet", 1, true) .. "Minuet" }
+      opts.mappings.n[prefix .. "e"] = { "<cmd>Minuet lsp attach<cr>", desc = "Enable autocompletion" }
+      opts.mappings.n[prefix .. "d"] = { "<cmd>Minuet lsp detach<cr>", desc = "Disable autocompletion" }
+    end,
+  },
 }
