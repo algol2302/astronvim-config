@@ -3,12 +3,6 @@ return {
     "milanglacier/minuet-ai.nvim",
     config = function()
       require("minuet").setup {
-        lsp = {
-          enabled_ft = { "toml", "lua", "cpp", "go" },
-          -- Enables automatic completion triggering using `vim.lsp.completion.enable`
-          enabled_auto_trigger_ft = { "cpp", "lua", "go" },
-          warn_on_blink_or_cmp = false,
-        },
         sources = {
           -- Enable minuet for autocomplete
           default = { "lsp", "path", "buffer", "snippets", "minuet" },
