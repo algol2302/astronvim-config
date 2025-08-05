@@ -1,3 +1,55 @@
+-- https://github.com/olimorris/codecompanion.nvim/discussions/813
+-- https://github.com/milanglacier/minuet-ai.nvim/pull/99
+
+local minuet_fidget_spinner = {}
+
+function minuet_fidget_spinner:init()
+  local group = vim.api.nvim_create_augroup("MinuetFidgetHooks", {})
+
+  vim.api.nvim_create_autocmd({ "User" }, {
+    pattern = "MinuetRequestStarted",
+    group = group,
+    callback = function(request)
+      local handle = minuet_fidget_spinner:create_progress_handle(request)
+      minuet_fidget_spinner:store_progress_handle(request.data.timestamp, handle)
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "User" }, {
+    pattern = "MinuetRequestFinished",
+    group = group,
+    callback = function(request)
+      local handle = minuet_fidget_spinner:pop_progress_handle(request.data.timestamp)
+      if handle then
+        handle.message = "Done"
+        handle:finish()
+      end
+    end,
+  })
+end
+
+minuet_fidget_spinner.handles = {}
+
+function minuet_fidget_spinner:store_progress_handle(id, handle) minuet_fidget_spinner.handles[id] = handle end
+
+function minuet_fidget_spinner:pop_progress_handle(id)
+  local handle = minuet_fidget_spinner.handles[id]
+  minuet_fidget_spinner.handles[id] = nil
+  return handle
+end
+
+function minuet_fidget_spinner:create_progress_handle(request)
+  local progress = require "fidget.progress"
+
+  return progress.handle.create {
+    title = " Requesting completion " .. request.data.name,
+    message = "In progress " .. request.data.n_requests .. "...",
+    lsp_client = {
+      name = request.data.name,
+    },
+  }
+end
+
 return {
   {
     "milanglacier/minuet-ai.nvim",
@@ -34,6 +86,10 @@ return {
             name = "Bothub",
             -- api_key = function() return require("helpers.secret").load "~/.config/nvim/ya_api_key.gpg" end,
             -- end_point = "https://llm.api.cloud.yandex.net/v1/chat/completions",
+            -- model = "gpt://"
+            --   .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg"
+            --   .. "/qwen3-235b-a22b-fp8/latest",
+            -- name = "Qwen3",
             -- model = "gpt://" .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt-lite",
             -- name = "YandexGPT-Lite",
             stream = true,
@@ -47,9 +103,14 @@ return {
           },
         },
       }
+
+      minuet_fidget_spinner:init()
     end,
   },
-  { "nvim-lua/plenary.nvim" },
+  {
+    "nvim-lua/plenary.nvim",
+    "j-hui/fidget.nvim",
+  },
   -- optional, if you are using virtual-text frontend, nvim-cmp is not
   -- required.
   -- { "hrsh7th/nvim-cmp" },

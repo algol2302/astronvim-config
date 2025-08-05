@@ -1,9 +1,84 @@
+-- https://github.com/olimorris/codecompanion.nvim/discussions/813
+
+local codecompanion_fidget_spinner = {}
+
+function codecompanion_fidget_spinner:init()
+  local group = vim.api.nvim_create_augroup("CodeCompanionFidgetHooks", {})
+
+  vim.api.nvim_create_autocmd({ "User" }, {
+    pattern = "CodeCompanionRequestStarted",
+    group = group,
+    callback = function(request)
+      local handle = codecompanion_fidget_spinner:create_progress_handle(request)
+      codecompanion_fidget_spinner:store_progress_handle(request.data.id, handle)
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "User" }, {
+    pattern = "CodeCompanionRequestFinished",
+    group = group,
+    callback = function(request)
+      local handle = codecompanion_fidget_spinner:pop_progress_handle(request.data.id)
+      if handle then
+        codecompanion_fidget_spinner:report_exit_status(handle, request)
+        handle:finish()
+      end
+    end,
+  })
+end
+
+codecompanion_fidget_spinner.handles = {}
+
+function codecompanion_fidget_spinner:store_progress_handle(id, handle)
+  codecompanion_fidget_spinner.handles[id] = handle
+end
+
+function codecompanion_fidget_spinner:pop_progress_handle(id)
+  local handle = codecompanion_fidget_spinner.handles[id]
+  codecompanion_fidget_spinner.handles[id] = nil
+  return handle
+end
+
+function codecompanion_fidget_spinner:create_progress_handle(request)
+  local progress = require "fidget.progress"
+  local description = ""
+  if request.data.strategy then description = "(" .. request.data.strategy .. ")" end
+
+  return progress.handle.create {
+    title = " Requesting assistance " .. description,
+    message = "In progress...",
+    lsp_client = {
+      name = codecompanion_fidget_spinner:llm_role_title(request.data.adapter),
+    },
+  }
+end
+
+function codecompanion_fidget_spinner:llm_role_title(adapter)
+  local parts = {}
+  table.insert(parts, adapter.formatted_name)
+  if adapter.model and adapter.model ~= "" then table.insert(parts, "(" .. adapter.model .. ")") end
+  return table.concat(parts, " ")
+end
+
+function codecompanion_fidget_spinner:report_exit_status(handle, request)
+  if request.data.status == "success" then
+    handle.message = "Completed"
+  elseif request.data.status == "error" then
+    handle.message = " Error"
+  else
+    handle.message = "󰜺 Cancelled"
+  end
+end
+
+codecompanion_fidget_spinner:init()
+
 return {
   {
     "codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "j-hui/fidget.nvim",
       "ravitemer/codecompanion-history.nvim",
     },
     opts = {
