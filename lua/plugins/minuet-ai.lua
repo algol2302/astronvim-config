@@ -51,10 +51,49 @@ function minuet_fidget_spinner:create_progress_handle(request)
 end
 
 return {
+  { "AstroNvim/astroui", opts = { icons = { Minuet = "󱙺" } } },
+  {
+    "AstroNvim/astrocore",
+    opts = function(_, opts)
+      local prefix = "<Leader>M"
+      if not opts.mappings then opts.mappings = {} end
+      opts.mappings.n = opts.mappings.n or {}
+      opts.mappings.n[prefix] = { desc = require("astroui").get_icon("Minuet", 1, true) .. "Minuet" }
+      opts.mappings.n[prefix .. "e"] = { "<cmd>Minuet lsp attach<cr>", desc = "Enable autocompletion" }
+      opts.mappings.n[prefix .. "d"] = { "<cmd>Minuet lsp detach<cr>", desc = "Disable autocompletion" }
+      -- opts.mappings.n[prefix .. "t"] =
+      --   { "<cmd>Minuet virtualtext toggle<cr>", desc = "Toggle virtual text autocompletion" }
+    end,
+  },
   {
     "milanglacier/minuet-ai.nvim",
+    dependences = {
+      "nvim-lua/plenary.nvim",
+      "j-hui/fidget.nvim",
+      "Saghen/blink.cmp",
+    },
     config = function()
       require("minuet").setup {
+        -- virtualtext = {
+        --   auto_trigger_ft = {},
+        --
+        --   keymap = {
+        --     -- accept whole completion
+        --     accept = "<A-l>",
+        --     -- accept one line
+        --     accept_line = "<A-;>",
+        --     accept_n_lines = nil,
+        --     -- Cycle to prev completion item, or manually invoke completion
+        --     prev = "<A-k>",
+        --     -- Cycle to next completion item, or manually invoke completion
+        --     next = "<A-j>",
+        --     dismiss = "<A-h>",
+        --   },
+        --
+        --   -- Whether show virtual text suggestion when the completion menu
+        --   -- (nvim-cmp or blink-cmp) is visible.
+        --   show_on_completion_menu = false,
+        -- },
         sources = {
           -- Enable minuet for autocomplete
           default = { "lsp", "path", "buffer", "snippets", "minuet" },
@@ -111,28 +150,6 @@ return {
       }
 
       minuet_fidget_spinner:init()
-    end,
-  },
-  {
-    "nvim-lua/plenary.nvim",
-    "j-hui/fidget.nvim",
-  },
-  -- optional, if you are using virtual-text frontend, nvim-cmp is not
-  -- required.
-  -- { "hrsh7th/nvim-cmp" },
-  -- optional, if you are using virtual-text frontend, blink is not required.
-  { "Saghen/blink.cmp" },
-
-  { "AstroNvim/astroui", opts = { icons = { Minuet = "󱙺" } } },
-  {
-    "AstroNvim/astrocore",
-    opts = function(_, opts)
-      local prefix = "<Leader>M"
-      if not opts.mappings then opts.mappings = {} end
-      opts.mappings.n = opts.mappings.n or {}
-      opts.mappings.n[prefix] = { desc = require("astroui").get_icon("Minuet", 1, true) .. "Minuet" }
-      opts.mappings.n[prefix .. "e"] = { "<cmd>Minuet lsp attach<cr>", desc = "Enable autocompletion" }
-      opts.mappings.n[prefix .. "d"] = { "<cmd>Minuet lsp detach<cr>", desc = "Disable autocompletion" }
     end,
   },
 }
