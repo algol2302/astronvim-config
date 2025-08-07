@@ -72,6 +72,50 @@ end
 
 codecompanion_fidget_spinner:init()
 
+-- other settings
+local temperature = {
+  order = 2,
+  mapping = "parameters",
+  type = "number",
+  optional = true,
+  default = 0.8,
+  desc = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.",
+  validate = function(n) return n >= 0 and n <= 2, "Must be between 0 and 2" end,
+}
+local max_completion_tokens = {
+  order = 3,
+  mapping = "parameters",
+  type = "integer",
+  optional = true,
+  default = nil,
+  desc = "An upper bound for the number of tokens that can be generated for a completion.",
+  validate = function(n) return n > 0, "Must be greater than 0" end,
+}
+local stop = {
+  order = 4,
+  mapping = "parameters",
+  type = "string",
+  optional = true,
+  default = nil,
+  desc = "Sets the stop sequences to use. When this pattern is encountered the LLM will stop generating text and return. Multiple stop patterns may be set by specifying multiple separate stop parameters in a modelfile.",
+  validate = function(s) return s:len() > 0, "Cannot be an empty string" end,
+}
+local logit_bias = {
+  order = 5,
+  mapping = "parameters",
+  type = "map",
+  optional = true,
+  default = nil,
+  desc = "Modify the likelihood of specified tokens appearing in the completion. Maps tokens (specified by their token ID) to an associated bias value from -100 to 100. Use https://platform.openai.com/tokenizer to find token IDs.",
+  subtype_key = {
+    type = "integer",
+  },
+  subtype = {
+    type = "integer",
+    validate = function(n) return n >= -100 and n <= 100, "Must be between -100 and 100" end,
+  },
+}
+
 return {
   {
     "codecompanion.nvim",
@@ -91,7 +135,7 @@ return {
               url = "https://bothub.chat/api/v2", -- optional: default value is ollama url http://127.0.0.1:11434
               api_key = require("helpers.secret").load "~/.config/nvim/bothub_api_key.gpg",
               chat_url = "/openai/v1/chat/completions", -- optional: default value, override if different
-              -- models_endpoint = "/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
+              models_endpoint = "/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
               -- models_endpoint = "https://bothub.chat/api/v2/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
             },
             schema = {
@@ -100,109 +144,29 @@ return {
                 -- default = "o4-mini-high", -- define llm model to be used
                 -- default = "deepseek-r1-671b", -- define llm model to be used
               },
-              temperature = {
-                order = 2,
-                mapping = "parameters",
-                type = "number",
-                optional = true,
-                default = 0.8,
-                desc = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.",
-                validate = function(n) return n >= 0 and n <= 2, "Must be between 0 and 2" end,
-              },
-              max_completion_tokens = {
-                order = 3,
-                mapping = "parameters",
-                type = "integer",
-                optional = true,
-                default = nil,
-                desc = "An upper bound for the number of tokens that can be generated for a completion.",
-                validate = function(n) return n > 0, "Must be greater than 0" end,
-              },
-              stop = {
-                order = 4,
-                mapping = "parameters",
-                type = "string",
-                optional = true,
-                default = nil,
-                desc = "Sets the stop sequences to use. When this pattern is encountered the LLM will stop generating text and return. Multiple stop patterns may be set by specifying multiple separate stop parameters in a modelfile.",
-                validate = function(s) return s:len() > 0, "Cannot be an empty string" end,
-              },
-              logit_bias = {
-                order = 5,
-                mapping = "parameters",
-                type = "map",
-                optional = true,
-                default = nil,
-                desc = "Modify the likelihood of specified tokens appearing in the completion. Maps tokens (specified by their token ID) to an associated bias value from -100 to 100. Use https://platform.openai.com/tokenizer to find token IDs.",
-                subtype_key = {
-                  type = "integer",
-                },
-                subtype = {
-                  type = "integer",
-                  validate = function(n) return n >= -100 and n <= 100, "Must be between -100 and 100" end,
-                },
-              },
+              temperature = temperature,
+              max_completion_tokens = max_completion_tokens,
+              stop = stop,
+              logit_bias = logit_bias,
             },
           })
         end,
         sbercloud = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
-              url = "https://foundation-models.api.cloud.ru", -- optional: default value is ollama url http://127.0.0.1:11434
+              url = "https://foundation-models.api.cloud.ru",
               api_key = require("helpers.secret").load "~/.config/nvim/sbercloud_api_key.gpg",
-              chat_url = "/v1/chat/completions", -- optional: default value, override if different
-              -- models_endpoint = "/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
-              -- models_endpoint = "https://bothub.chat/api/v2/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
+              -- chat_url = "/v1/chat/completions",
             },
             schema = {
               model = {
                 default = "Qwen/Qwen3-Coder-480B-A35B-Instruct",
                 -- default = "Qwen/Qwen3-235B-A22B-Instruct-2507",
-                -- default = "o4-mini-high", -- define llm model to be used
-                -- default = "deepseek-r1-671b", -- define llm model to be used
               },
-              temperature = {
-                order = 2,
-                mapping = "parameters",
-                type = "number",
-                optional = true,
-                default = 0.8,
-                desc = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.",
-                validate = function(n) return n >= 0 and n <= 2, "Must be between 0 and 2" end,
-              },
-              max_completion_tokens = {
-                order = 3,
-                mapping = "parameters",
-                type = "integer",
-                optional = true,
-                default = nil,
-                desc = "An upper bound for the number of tokens that can be generated for a completion.",
-                validate = function(n) return n > 0, "Must be greater than 0" end,
-              },
-              stop = {
-                order = 4,
-                mapping = "parameters",
-                type = "string",
-                optional = true,
-                default = nil,
-                desc = "Sets the stop sequences to use. When this pattern is encountered the LLM will stop generating text and return. Multiple stop patterns may be set by specifying multiple separate stop parameters in a modelfile.",
-                validate = function(s) return s:len() > 0, "Cannot be an empty string" end,
-              },
-              logit_bias = {
-                order = 5,
-                mapping = "parameters",
-                type = "map",
-                optional = true,
-                default = nil,
-                desc = "Modify the likelihood of specified tokens appearing in the completion. Maps tokens (specified by their token ID) to an associated bias value from -100 to 100. Use https://platform.openai.com/tokenizer to find token IDs.",
-                subtype_key = {
-                  type = "integer",
-                },
-                subtype = {
-                  type = "integer",
-                  validate = function(n) return n >= -100 and n <= 100, "Must be between -100 and 100" end,
-                },
-              },
+              temperature = temperature,
+              max_completion_tokens = max_completion_tokens,
+              stop = stop,
+              logit_bias = logit_bias,
             },
           })
         end,
@@ -211,9 +175,6 @@ return {
             env = {
               url = "https://llm.api.cloud.yandex.net",
               api_key = require("helpers.secret").load "~/.config/nvim/ya_api_key.gpg",
-              -- chat_url = "/openai/v1/chat/completions", -- optional: default value, override if different
-              -- models_endpoint = "/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
-              -- models_endpoint = "https://bothub.chat/api/v2/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
             },
             schema = {
               model = {
@@ -221,48 +182,10 @@ return {
                   .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg"
                   .. "/qwen3-235b-a22b-fp8/latest",
               },
-              temperature = {
-                order = 2,
-                mapping = "parameters",
-                type = "number",
-                optional = true,
-                default = 0.8,
-                desc = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.",
-                validate = function(n) return n >= 0 and n <= 2, "Must be between 0 and 2" end,
-              },
-              max_completion_tokens = {
-                order = 3,
-                mapping = "parameters",
-                type = "integer",
-                optional = true,
-                default = nil,
-                desc = "An upper bound for the number of tokens that can be generated for a completion.",
-                validate = function(n) return n > 0, "Must be greater than 0" end,
-              },
-              stop = {
-                order = 4,
-                mapping = "parameters",
-                type = "string",
-                optional = true,
-                default = nil,
-                desc = "Sets the stop sequences to use. When this pattern is encountered the LLM will stop generating text and return. Multiple stop patterns may be set by specifying multiple separate stop parameters in a modelfile.",
-                validate = function(s) return s:len() > 0, "Cannot be an empty string" end,
-              },
-              logit_bias = {
-                order = 5,
-                mapping = "parameters",
-                type = "map",
-                optional = true,
-                default = nil,
-                desc = "Modify the likelihood of specified tokens appearing in the completion. Maps tokens (specified by their token ID) to an associated bias value from -100 to 100. Use https://platform.openai.com/tokenizer to find token IDs.",
-                subtype_key = {
-                  type = "integer",
-                },
-                subtype = {
-                  type = "integer",
-                  validate = function(n) return n >= -100 and n <= 100, "Must be between -100 and 100" end,
-                },
-              },
+              temperature = temperature,
+              max_completion_tokens = max_completion_tokens,
+              stop = stop,
+              logit_bias = logit_bias,
             },
           })
         end,
