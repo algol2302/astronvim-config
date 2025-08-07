@@ -120,11 +120,17 @@ return {
         provider_options = {
           openai_compatible = {
 
-            -- Bothub API
-            api_key = function() return require("helpers.secret").load "~/.config/nvim/bothub_api_key.gpg" end,
-            end_point = "https://bothub.chat/api/v2/openai/v1/chat/completions",
-            model = "deepseek-chat-v3-0324",
+            -- Openrouter.ai
+            api_key = function() return require("helpers.secret").load "~/.config/nvim/openrouter_key.gpg" end,
+            end_point = "https://openrouter.ai/api/v1/chat/completions",
+            model = "deepseek/deepseek-chat-v3-0324:free",
             name = "Deepseek",
+
+            -- Bothub API
+            -- api_key = function() return require("helpers.secret").load "~/.config/nvim/bothub_api_key.gpg" end,
+            -- end_point = "https://bothub.chat/api/v2/openai/v1/chat/completions",
+            -- model = "deepseek-chat-v3-0324",
+            -- name = "Deepseek",
 
             -- Yandex API
             -- api_key = function() return require("helpers.secret").load "~/.config/nvim/ya_api_key.gpg" end,
