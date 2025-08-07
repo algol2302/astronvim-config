@@ -8,7 +8,8 @@ function M.load(secret_name)
   if not handle then error("Failed to start GPG: " .. (err or "unknown error")) end
   local result = handle:read "*a"
   handle:close()
-  return result:gsub("\n", "")
+  local r = result:gsub("%s+$", "")
+  return r
 end
 
 return M

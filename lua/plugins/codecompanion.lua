@@ -129,7 +129,7 @@ return {
       adapters = {
         opts = {
           show_defaults = false,
-          show_model_choices = true,
+          show_model_choices = false,
         },
         bothub = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
@@ -216,13 +216,13 @@ return {
       -- },
       strategies = {
         chat = {
-          adapter = "openrouter",
+          adapter = "yandex_gpt",
         },
         inline = {
-          adapter = "openrouter",
+          adapter = "yandex_gpt",
         },
         cmd = {
-          adapter = "openrouter",
+          adapter = "yandex_gpt",
         },
       },
       display = {
