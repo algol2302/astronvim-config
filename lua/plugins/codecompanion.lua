@@ -129,7 +129,7 @@ return {
       adapters = {
         opts = {
           show_defaults = false,
-          show_model_choices = false,
+          show_model_choices = true,
         },
         bothub = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
