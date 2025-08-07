@@ -173,6 +173,10 @@ return {
           })
         end,
         yandex_gpt = function()
+          -- Available yandex models:
+          --  https://yandex.cloud/ru/docs/foundation-models/concepts/yandexgpt/models
+          -- Prices:
+          --  https://yandex.cloud/ru/docs/foundation-models/pricing#text-sync-async
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
               url = "https://llm.api.cloud.yandex.net",
@@ -183,6 +187,15 @@ return {
                 default = "gpt://"
                   .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg"
                   .. "/qwen3-235b-a22b-fp8/latest",
+                choices = {
+                  "gpt://"
+                    .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg"
+                    .. "/qwen3-235b-a22b-fp8/latest",
+                  "gpt://" .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt/latest",
+                  "gpt://" .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt-lite/latest",
+                  "gpt://" .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg" .. "/gpt-oss-120b/latest",
+                  "gpt://" .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg" .. "/gpt-oss-20b/latest",
+                },
               },
               temperature = temperature,
               max_completion_tokens = max_completion_tokens,
