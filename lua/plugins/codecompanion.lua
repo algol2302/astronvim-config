@@ -189,6 +189,20 @@ return {
             },
           })
         end,
+        openrouter = function()
+          return require("codecompanion.adapters").extend("openai_compatible", {
+            env = {
+              url = "https://openrouter.ai/api",
+              api_key = require("helpers.secret").load "~/.config/nvim/openrouter_key.gpg",
+              chat_url = "/v1/chat/completions",
+            },
+            schema = {
+              model = {
+                default = "deepseek/deepseek-chat-v3-0324:free",
+              },
+            },
+          })
+        end,
       },
       -- mcphub = {
       --   callback = "mcphub.extensions.codecompanion",
