@@ -119,6 +119,11 @@ return {
         debounce = 300, -- Increase to reduce costs and avoid rate limits
         provider_options = {
           openai_compatible = {
+            -- Sbercloud
+            -- api_key = require("helpers.secret").load "~/.config/nvim/sbercloud_api_key.gpg",
+            -- end_point = "https://foundation-models.api.cloud.ru/v1/chat/completions",
+            -- model = "Qwen/Qwen3-235B-A22B-Instruct-2507",
+            -- name = "Qwen3-235B",
 
             -- Openrouter.ai
             api_key = function() return require("helpers.secret").load "~/.config/nvim/openrouter_key.gpg" end,
