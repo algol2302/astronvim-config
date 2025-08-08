@@ -318,6 +318,7 @@ return {
           },
         },
       },
+      ---@diagnostic disable-next-line: unused-local
       system_prompt = function(opts)
         return [[You are an AI programming assistant named "CodeCompanion". You are currently plugged in to the Neovim text editor on a user's machine.
 
