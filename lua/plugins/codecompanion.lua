@@ -142,7 +142,15 @@ return {
             },
             schema = {
               model = {
-                default = "gemini-2.5-pro",
+                default = "deepseek-chat-v3-0324:free",
+                choices = {
+                  "claude-sonnet-4",
+                  "deepseek-chat-v3-0324:free",
+                  "gemini-2.5-pro",
+                  "gpt-4.1",
+                  "gpt-5",
+                  "grok-4",
+                },
                 -- default = "o4-mini-high", -- define llm model to be used
                 -- default = "deepseek-r1-671b", -- define llm model to be used
               },
