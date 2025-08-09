@@ -133,6 +133,12 @@ return {
         --   desc = "Close buffer",
         -- },
       },
+      x = {
+        ["<leader>c"] = {
+          function() require("grug-far").with_visual_selection { prefills = { paths = vim.fn.expand "%" } } end,
+          desc = "Replace selection only current file",
+        },
+      },
     },
   },
 }
