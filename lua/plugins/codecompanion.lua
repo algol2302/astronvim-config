@@ -149,6 +149,7 @@ return {
                   "gemini-2.5-pro",
                   "gpt-4.1",
                   "gpt-5",
+                  "gpt-5-mini",
                   "grok-4",
                 },
                 -- default = "o4-mini-high", -- define llm model to be used

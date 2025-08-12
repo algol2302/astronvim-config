@@ -134,8 +134,8 @@ return {
             -- Bothub API
             -- api_key = function() return require("helpers.secret").load "~/.config/nvim/bothub_api_key.gpg" end,
             -- end_point = "https://bothub.chat/api/v2/openai/v1/chat/completions",
-            -- model = "deepseek-chat-v3-0324",
-            -- name = "Deepseek",
+            -- model = "gpt-5-mini",
+            -- name = "GPT-5-mini",
 
             -- Yandex API
             -- api_key = function() return require("helpers.secret").load "~/.config/nvim/ya_api_key.gpg" end,
