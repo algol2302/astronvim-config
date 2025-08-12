@@ -11,15 +11,20 @@ return {
       ensure_installed = {
         -- install language servers
         "lua-language-server",
+        "gopls",
+        "basedpyright",
 
         -- install formatters
         "stylua",
+        "ruff",
 
         -- install debuggers
-        -- "debugpy",
+        "delve",
+        "debugpy",
 
         -- install any other package
         "tree-sitter-cli",
+        "uv",
       },
     },
   },
