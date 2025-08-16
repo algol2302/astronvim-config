@@ -327,6 +327,95 @@ return {
             },
           },
         },
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            -- MCP Tools
+            make_tools = true, -- Make individual tools (@server__tool) and server groups (@server) from MCP servers
+            show_server_tools_in_chat = true, -- Show individual tools in chat completion (when make_tools=true)
+            add_mcp_prefix_to_tool_names = false, -- Add mcp__ prefix (e.g `@mcp__github`, `@mcp__neovim__list_issues`)
+            show_result_in_chat = true, -- Show tool results directly in chat buffer
+            format_tool = nil, -- function(tool_name:string, tool: CodeCompanion.Agent.Tool) : string Function to format tool names to show in the chat buffer
+            -- MCP Resources
+            make_vars = true, -- Convert MCP resources to #variables for prompts
+            -- MCP Prompts
+            make_slash_commands = true, -- Add MCP prompts as /slash commands
+          },
+        },
+      },
+      prompt_library = {
+        ["Code Edit"] = {
+          strategy = "inline",
+          description = "Prompt the LLM from Neovim",
+          opts = {
+            is_slash_cmd = false,
+            short_name = "code-edit-inline",
+            user_prompt = true,
+          },
+          prompts = {
+            {
+              role = "system",
+              content = function(context)
+                return string.format(
+                  [[I want you to act as a senior %s developer. I will ask you specific questions and I want you to return raw code only (no codeblocks and no explanations). If you can't respond with code, respond with nothing]],
+                  context.filetype
+                )
+              end,
+              opts = {
+                visible = false,
+                tag = "system_tag",
+              },
+            },
+          },
+        },
+        ["Text Fix Spelling Inline"] = {
+          strategy = "inline",
+          opts = {
+            is_slash_cmd = false,
+            user_prompt = false,
+            placement = "replace",
+            short_name = "text-fix-spelling-inline",
+            auto_submit = true,
+          },
+          prompts = {
+            {
+              role = "system",
+              content = function(context)
+                return [[
+Fix the grammar and spelling.
+Preserve all formatting, line breaks, and special characters.
+Do not add or remove any content.
+Return only the corrected text.
+]]
+              end,
+              opts = {
+                visible = false,
+                tag = "system_tag",
+              },
+            },
+          },
+          {
+            role = "user",
+            content = function(context)
+              local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
+
+              return string.format(
+                [[
+Fix spelling for this:
+
+```%s
+%s
+```
+]],
+                context.filetype,
+                code
+              )
+            end,
+            opts = {
+              contains_code = true,
+            },
+          },
+        },
       },
       ---@diagnostic disable-next-line: unused-local
       system_prompt = function(opts)
