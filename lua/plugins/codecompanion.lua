@@ -173,6 +173,7 @@ return {
               model = {
                 default = "Qwen/Qwen3-Coder-480B-A35B-Instruct",
                 -- default = "Qwen/Qwen3-235B-A22B-Instruct-2507",
+                -- default = "zai-org/GLM-4.5",
               },
               temperature = temperature,
               max_completion_tokens = max_completion_tokens,
