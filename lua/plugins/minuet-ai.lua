@@ -126,7 +126,7 @@ return {
             -- name = "Qwen3-235B",
 
             -- Openrouter.ai
-            api_key = function() return require("helpers.secret").load "~/.config/nvim/openrouter_key.gpg" end,
+            api_key = function() return require("helpers.secret").get "~/.config/nvim/openrouter_key.gpg" end,
             end_point = "https://openrouter.ai/api/v1/chat/completions",
             model = "deepseek/deepseek-chat-v3-0324:free",
             name = "Deepseek",

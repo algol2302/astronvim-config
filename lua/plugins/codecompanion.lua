@@ -135,7 +135,7 @@ return {
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
               url = "https://bothub.chat/api/v2", -- optional: default value is ollama url http://127.0.0.1:11434
-              api_key = require("helpers.secret").load "~/.config/nvim/bothub_api_key.gpg",
+              api_key = require("helpers.secret").get "~/.config/nvim/bothub_api_key.gpg",
               chat_url = "/openai/v1/chat/completions", -- optional: default value, override if different
               models_endpoint = "/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
               -- models_endpoint = "https://bothub.chat/api/v2/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
@@ -166,7 +166,7 @@ return {
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
               url = "https://foundation-models.api.cloud.ru",
-              api_key = require("helpers.secret").load "~/.config/nvim/sbercloud_api_key.gpg",
+              api_key = require("helpers.secret").get "~/.config/nvim/sbercloud_api_key.gpg",
               -- chat_url = "/v1/chat/completions",
             },
             schema = {
@@ -190,21 +190,21 @@ return {
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
               url = "https://llm.api.cloud.yandex.net",
-              api_key = require("helpers.secret").load "~/.config/nvim/ya_api_key.gpg",
+              api_key = require("helpers.secret").get "~/.config/nvim/ya_api_key.gpg",
             },
             schema = {
               model = {
                 default = "gpt://"
-                  .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg"
+                  .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg"
                   .. "/qwen3-235b-a22b-fp8/latest",
                 choices = {
                   "gpt://"
-                    .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg"
+                    .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg"
                     .. "/qwen3-235b-a22b-fp8/latest",
-                  "gpt://" .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt/latest",
-                  "gpt://" .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt-lite/latest",
-                  "gpt://" .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg" .. "/gpt-oss-120b/latest",
-                  "gpt://" .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg" .. "/gpt-oss-20b/latest",
+                  "gpt://" .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt/latest",
+                  "gpt://" .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt-lite/latest",
+                  "gpt://" .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg" .. "/gpt-oss-120b/latest",
+                  "gpt://" .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg" .. "/gpt-oss-20b/latest",
                 },
               },
               temperature = temperature,
@@ -218,7 +218,7 @@ return {
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
               url = "https://openrouter.ai/api",
-              api_key = require("helpers.secret").load "~/.config/nvim/openrouter_key.gpg",
+              api_key = require("helpers.secret").get "~/.config/nvim/openrouter_key.gpg",
               chat_url = "/v1/chat/completions",
             },
             schema = {
@@ -236,7 +236,7 @@ return {
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
               url = "https://api.polza.ai/api",
-              api_key = require("helpers.secret").load "~/.config/nvim/polza_key.gpg",
+              api_key = require("helpers.secret").get "~/.config/nvim/polza_key.gpg",
               -- chat_url = "/v1/chat/completions",
             },
             schema = {
