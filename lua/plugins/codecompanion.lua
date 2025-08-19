@@ -256,7 +256,7 @@ return {
           adapter = "sbercloud",
         },
         inline = {
-          adapter = "polza",
+          adapter = "sbercloud",
         },
         cmd = {
           adapter = "sbercloud",
