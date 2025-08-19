@@ -225,6 +225,28 @@ return {
               model = {
                 default = "deepseek/deepseek-chat-v3-0324:free",
               },
+              temperature = temperature,
+              max_completion_tokens = max_completion_tokens,
+              stop = stop,
+              logit_bias = logit_bias,
+            },
+          })
+        end,
+        polza = function()
+          return require("codecompanion.adapters").extend("openai_compatible", {
+            env = {
+              url = "https://api.polza.ai/api",
+              api_key = require("helpers.secret").load "~/.config/nvim/polza_key.gpg",
+              -- chat_url = "/v1/chat/completions",
+            },
+            schema = {
+              model = {
+                default = "openai/gpt-5-mini",
+              },
+              temperature = temperature,
+              max_completion_tokens = max_completion_tokens,
+              stop = stop,
+              logit_bias = logit_bias,
             },
           })
         end,
@@ -234,7 +256,7 @@ return {
           adapter = "sbercloud",
         },
         inline = {
-          adapter = "sbercloud",
+          adapter = "polza",
         },
         cmd = {
           adapter = "sbercloud",
