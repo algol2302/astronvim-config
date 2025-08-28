@@ -127,129 +127,131 @@ return {
     },
     opts = {
       adapters = {
-        opts = {
-          show_defaults = false,
-          show_model_choices = true,
-        },
-        bothub = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            env = {
-              url = "https://bothub.chat/api/v2", -- optional: default value is ollama url http://127.0.0.1:11434
-              api_key = require("helpers.secret").get "~/.config/nvim/bothub_api_key.gpg",
-              chat_url = "/openai/v1/chat/completions", -- optional: default value, override if different
-              models_endpoint = "/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
-              -- models_endpoint = "https://bothub.chat/api/v2/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
-            },
-            schema = {
-              model = {
-                default = "deepseek-chat-v3-0324:free",
-                choices = {
-                  "claude-sonnet-4",
-                  "deepseek-chat-v3-0324:free",
-                  "gemini-2.5-pro",
-                  "gpt-4.1",
-                  "gpt-5",
-                  "gpt-5-mini",
-                  "grok-4",
+        http = {
+          opts = {
+            show_defaults = false,
+            show_model_choices = true,
+          },
+          bothub = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://bothub.chat/api/v2", -- optional: default value is ollama url http://127.0.0.1:11434
+                api_key = require("helpers.secret").get "~/.config/nvim/bothub_api_key.gpg",
+                chat_url = "/openai/v1/chat/completions", -- optional: default value, override if different
+                models_endpoint = "/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
+                -- models_endpoint = "https://bothub.chat/api/v2/model/list?children=1", -- optional: attaches to the end of the URL to form the endpoint to retrieve models
+              },
+              schema = {
+                model = {
+                  default = "deepseek-chat-v3-0324:free",
+                  choices = {
+                    "claude-sonnet-4",
+                    "deepseek-chat-v3-0324:free",
+                    "gemini-2.5-pro",
+                    "gpt-4.1",
+                    "gpt-5",
+                    "gpt-5-mini",
+                    "grok-4",
+                  },
+                  -- default = "o4-mini-high", -- define llm model to be used
+                  -- default = "deepseek-r1-671b", -- define llm model to be used
                 },
-                -- default = "o4-mini-high", -- define llm model to be used
-                -- default = "deepseek-r1-671b", -- define llm model to be used
+                temperature = temperature,
+                max_completion_tokens = max_completion_tokens,
+                stop = stop,
+                logit_bias = logit_bias,
               },
-              temperature = temperature,
-              max_completion_tokens = max_completion_tokens,
-              stop = stop,
-              logit_bias = logit_bias,
-            },
-          })
-        end,
-        sbercloud = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            env = {
-              url = "https://foundation-models.api.cloud.ru",
-              api_key = require("helpers.secret").get "~/.config/nvim/sbercloud_api_key.gpg",
-              -- chat_url = "/v1/chat/completions",
-            },
-            schema = {
-              model = {
-                default = "Qwen/Qwen3-Coder-480B-A35B-Instruct",
-                -- default = "Qwen/Qwen3-235B-A22B-Instruct-2507",
-                -- default = "zai-org/GLM-4.5",
+            })
+          end,
+          sbercloud = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://foundation-models.api.cloud.ru",
+                api_key = require("helpers.secret").get "~/.config/nvim/sbercloud_api_key.gpg",
+                -- chat_url = "/v1/chat/completions",
               },
-              temperature = temperature,
-              max_completion_tokens = max_completion_tokens,
-              stop = stop,
-              logit_bias = logit_bias,
-            },
-          })
-        end,
-        yandex_gpt = function()
-          -- Available yandex models:
-          --  https://yandex.cloud/ru/docs/foundation-models/concepts/yandexgpt/models
-          -- Prices:
-          --  https://yandex.cloud/ru/docs/foundation-models/pricing#text-sync-async
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            env = {
-              url = "https://llm.api.cloud.yandex.net",
-              api_key = require("helpers.secret").get "~/.config/nvim/ya_api_key.gpg",
-            },
-            schema = {
-              model = {
-                default = "gpt://"
-                  .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg"
-                  .. "/qwen3-235b-a22b-fp8/latest",
-                choices = {
-                  "gpt://"
+              schema = {
+                model = {
+                  default = "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+                  -- default = "Qwen/Qwen3-235B-A22B-Instruct-2507",
+                  -- default = "zai-org/GLM-4.5",
+                },
+                temperature = temperature,
+                max_completion_tokens = max_completion_tokens,
+                stop = stop,
+                logit_bias = logit_bias,
+              },
+            })
+          end,
+          yandex_gpt = function()
+            -- Available yandex models:
+            --  https://yandex.cloud/ru/docs/foundation-models/concepts/yandexgpt/models
+            -- Prices:
+            --  https://yandex.cloud/ru/docs/foundation-models/pricing#text-sync-async
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://llm.api.cloud.yandex.net",
+                api_key = require("helpers.secret").get "~/.config/nvim/ya_api_key.gpg",
+              },
+              schema = {
+                model = {
+                  default = "gpt://"
                     .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg"
                     .. "/qwen3-235b-a22b-fp8/latest",
-                  "gpt://" .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt/latest",
-                  "gpt://" .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt-lite/latest",
-                  "gpt://" .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg" .. "/gpt-oss-120b/latest",
-                  "gpt://" .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg" .. "/gpt-oss-20b/latest",
+                  choices = {
+                    "gpt://"
+                      .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg"
+                      .. "/qwen3-235b-a22b-fp8/latest",
+                    "gpt://" .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt/latest",
+                    "gpt://" .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt-lite/latest",
+                    "gpt://" .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg" .. "/gpt-oss-120b/latest",
+                    "gpt://" .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg" .. "/gpt-oss-20b/latest",
+                  },
                 },
+                temperature = temperature,
+                max_completion_tokens = max_completion_tokens,
+                stop = stop,
+                logit_bias = logit_bias,
               },
-              temperature = temperature,
-              max_completion_tokens = max_completion_tokens,
-              stop = stop,
-              logit_bias = logit_bias,
-            },
-          })
-        end,
-        openrouter = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            env = {
-              url = "https://openrouter.ai/api",
-              api_key = require("helpers.secret").get "~/.config/nvim/openrouter_key.gpg",
-              chat_url = "/v1/chat/completions",
-            },
-            schema = {
-              model = {
-                default = "deepseek/deepseek-chat-v3-0324:free",
+            })
+          end,
+          openrouter = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://openrouter.ai/api",
+                api_key = require("helpers.secret").get "~/.config/nvim/openrouter_key.gpg",
+                chat_url = "/v1/chat/completions",
               },
-              temperature = temperature,
-              max_completion_tokens = max_completion_tokens,
-              stop = stop,
-              logit_bias = logit_bias,
-            },
-          })
-        end,
-        polza = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            env = {
-              url = "https://api.polza.ai/api",
-              api_key = require("helpers.secret").get "~/.config/nvim/polza_key.gpg",
-              -- chat_url = "/v1/chat/completions",
-            },
-            schema = {
-              model = {
-                default = "openai/gpt-5-mini",
+              schema = {
+                model = {
+                  default = "deepseek/deepseek-chat-v3-0324:free",
+                },
+                temperature = temperature,
+                max_completion_tokens = max_completion_tokens,
+                stop = stop,
+                logit_bias = logit_bias,
               },
-              temperature = temperature,
-              max_completion_tokens = max_completion_tokens,
-              stop = stop,
-              logit_bias = logit_bias,
-            },
-          })
-        end,
+            })
+          end,
+          polza = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://api.polza.ai/api",
+                api_key = require("helpers.secret").get "~/.config/nvim/polza_key.gpg",
+                -- chat_url = "/v1/chat/completions",
+              },
+              schema = {
+                model = {
+                  default = "openai/gpt-5-mini",
+                },
+                temperature = temperature,
+                max_completion_tokens = max_completion_tokens,
+                stop = stop,
+                logit_bias = logit_bias,
+              },
+            })
+          end,
+        },
       },
       strategies = {
         chat = {
