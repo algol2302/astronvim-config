@@ -197,7 +197,7 @@ return {
                 model = {
                   default = "gpt://"
                     .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg"
-                    .. "/qwen3-235b-a22b-fp8/latest",
+                    .. "/yandexgpt/latest",
                   choices = {
                     "gpt://"
                       .. require("helpers.secret").get "~/.config/nvim/ya_dir.gpg"
@@ -255,13 +255,13 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "sbercloud",
+          adapter = "yandex_gpt",
         },
         inline = {
-          adapter = "sbercloud",
+          adapter = "yandex_gpt",
         },
         cmd = {
-          adapter = "sbercloud",
+          adapter = "yandex_gpt",
         },
       },
       display = {
