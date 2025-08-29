@@ -9,6 +9,7 @@ local function load_secret(secret_name)
   local result = handle:read "*a"
   handle:close()
   local r = result:gsub("%s+$", "")
+  if r == "" then error "Decryption failed or no output from GPG" end
   return r
 end
 
