@@ -120,32 +120,32 @@ return {
         provider_options = {
           openai_compatible = {
             -- Sbercloud
-            -- api_key = require("helpers.secret").load "~/.config/nvim/sbercloud_api_key.gpg",
+            -- api_key = require("helpers.secret").load "~/Secrets/sbercloud_api_key.gpg",
             -- end_point = "https://foundation-models.api.cloud.ru/v1/chat/completions",
             -- model = "Qwen/Qwen3-235B-A22B-Instruct-2507",
             -- name = "Qwen3-235B",
 
             -- Openrouter.ai
-            api_key = function() return require("helpers.secret").get "~/.config/nvim/openrouter_key.gpg" end,
+            api_key = function() return require("helpers.secret").get "~/Secrets/openrouter_key.gpg" end,
             end_point = "https://openrouter.ai/api/v1/chat/completions",
             model = "deepseek/deepseek-chat-v3-0324:free",
             name = "Deepseek",
 
             -- Bothub API
-            -- api_key = function() return require("helpers.secret").load "~/.config/nvim/bothub_api_key.gpg" end,
+            -- api_key = function() return require("helpers.secret").load "~/Secrets/bothub_api_key.gpg" end,
             -- end_point = "https://bothub.chat/api/v2/openai/v1/chat/completions",
             -- model = "gpt-5-mini",
             -- name = "GPT-5-mini",
 
             -- Yandex API
-            -- api_key = function() return require("helpers.secret").load "~/.config/nvim/ya_api_key.gpg" end,
+            -- api_key = function() return require("helpers.secret").load "~/Secrets/ya_api_key.gpg" end,
             -- end_point = "https://llm.api.cloud.yandex.net/v1/chat/completions",
             --
             -- model = "gpt://"
-            --   .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg"
+            --   .. require("helpers.secret").load "~/Secrets/ya_dir.gpg"
             --   .. "/qwen3-235b-a22b-fp8/latest",
             -- name = "Qwen3",
-            -- model = "gpt://" .. require("helpers.secret").load "~/.config/nvim/ya_dir.gpg" .. "/yandexgpt-lite",
+            -- model = "gpt://" .. require("helpers.secret").load "~/Secrets/ya_dir.gpg" .. "/yandexgpt-lite",
             -- name = "YandexGPT-Lite",
 
             stream = true,
