@@ -16,7 +16,7 @@
   "codecompanion-history.nvim": { "branch": "main", "commit": "b9f1afb77f1a8805e686f89ac38338a9ca588579" },
   "codecompanion.nvim": { "branch": "main", "commit": "019be206a96cf6de12ea71f02a9e1b847a2debbb" },
   "cspell.nvim": { "branch": "main", "commit": "07d75238648ef99c0c5c05f4cfd83093d0a01dd4" },
-  "csvview.nvim": { "branch": "main", "commit": "a4c45eadb03a462a80dd1a545d0f9cb636b73664" },
+  "csvview.nvim": { "branch": "main", "commit": "99b327ca97cabd242de0f2ddca7fbc7d378b84a7" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "fidget.nvim": { "branch": "main", "commit": "4d5858bd4c471c895060e1b9f3575f1551184dc5" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
