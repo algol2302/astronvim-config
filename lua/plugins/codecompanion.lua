@@ -249,6 +249,22 @@ return {
               },
             })
           end,
+          local_lm_studio = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "http://localhost:1234",
+              },
+              schema = {
+                model = {
+                  default = "qwen/qwen2.5-coder-14b",
+                },
+                temperature = temperature,
+                max_completion_tokens = max_completion_tokens,
+                stop = stop,
+                logit_bias = logit_bias,
+              },
+            })
+          end,
         },
       },
       strategies = {
