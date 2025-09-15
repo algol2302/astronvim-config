@@ -255,9 +255,6 @@ return {
                 url = "http://192.168.1.96:1234",
               },
               schema = {
-                model = {
-                  default = "qwen/qwen2.5-coder-14b",
-                },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
                 stop = stop,
