@@ -252,7 +252,7 @@ return {
           local_lm_studio = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               env = {
-                url = "http://localhost:1234",
+                url = "http://192.168.1.96:1234",
               },
               schema = {
                 model = {
@@ -269,13 +269,13 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "sbercloud",
+          adapter = "local_lm_studio",
         },
         inline = {
-          adapter = "sbercloud",
+          adapter = "local_lm_studio",
         },
         cmd = {
-          adapter = "sbercloud",
+          adapter = "local_lm_studio",
         },
       },
       display = {
