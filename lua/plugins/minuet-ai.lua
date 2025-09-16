@@ -119,6 +119,11 @@ return {
         debounce = 300, -- Increase to reduce costs and avoid rate limits
         provider_options = {
           openai_compatible = {
+            -- Local
+            -- api_key = "TERM",
+            -- name = "Qwen3",
+            -- end_point = "http://192.168.1.96:1234/v1/chat/completions",
+
             -- Sbercloud
             -- api_key = require("helpers.secret").load "~/Secrets/sbercloud_api_key.gpg",
             -- end_point = "https://foundation-models.api.cloud.ru/v1/chat/completions",
