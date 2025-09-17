@@ -257,7 +257,15 @@ return {
               },
               schema = {
                 temperature = temperature,
-                max_completion_tokens = max_completion_tokens,
+                max_completion_tokens = {
+                  order = 3,
+                  mapping = "parameters",
+                  type = "integer",
+                  optional = true,
+                  default = 24093,
+                  desc = "An upper bound for the number of tokens that can be generated for a completion.",
+                  validate = function(n) return n > 0, "Must be greater than 0" end,
+                },
                 stop = stop,
                 logit_bias = logit_bias,
               },
