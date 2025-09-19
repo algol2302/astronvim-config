@@ -256,6 +256,9 @@ return {
                 -- url = "http://localhost:1234",
               },
               schema = {
+                model = {
+                  default = "openai/gpt-oss-20b",
+                },
                 temperature = temperature,
                 max_completion_tokens = {
                   order = 3,
