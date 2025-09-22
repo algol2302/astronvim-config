@@ -278,13 +278,13 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "local_lm_studio",
+          adapter = "sbercloud",
         },
         inline = {
-          adapter = "local_lm_studio",
+          adapter = "sbercloud",
         },
         cmd = {
-          adapter = "local_lm_studio",
+          adapter = "sbercloud",
         },
       },
       display = {
