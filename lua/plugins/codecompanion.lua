@@ -252,8 +252,8 @@ return {
           local_lm_studio = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               env = {
-                url = "http://192.168.1.96:1234",
-                -- url = "http://localhost:1234",
+                -- url = "http://192.168.1.96:1234",
+                url = "http://localhost:1234",
               },
               schema = {
                 model = {
