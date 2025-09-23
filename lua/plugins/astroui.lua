@@ -81,4 +81,6 @@ return {
       }
     end,
   },
+
+  { "p00f/alabaster.nvim" },
 }
