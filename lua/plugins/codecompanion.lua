@@ -240,7 +240,7 @@ return {
               },
               schema = {
                 model = {
-                  default = "openai/gpt-5-mini",
+                  default = "z-ai/glm-4.6",
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
@@ -278,7 +278,7 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "sbercloud",
+          adapter = "polza",
         },
         inline = {
           adapter = "sbercloud",
