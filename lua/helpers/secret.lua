@@ -8,6 +8,8 @@ local function load_secret(secret_name)
   if not handle then error("Failed to start GPG: " .. (err or "unknown error")) end
   local result = handle:read "*a"
   handle:close()
+  result = result:gsub("gpg: WARNING: standard error reopened\n?", "")
+  result = result:gsub("gpg: .-: .-\n?", "") -- Catch-all for other gpg messages
   local r = result:gsub("%s+$", "")
   if r == "" then error "Decryption failed or no output from GPG" end
   return r

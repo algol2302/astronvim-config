@@ -95,6 +95,7 @@ return {
                 functionTypeParameters = true,
                 parameterNames = true,
                 rangeVariableTypes = true,
+                ignoredError = true,
               },
               buildFlags = { "-tags", "integration" },
               completeUnimported = true,
