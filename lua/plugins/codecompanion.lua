@@ -172,9 +172,10 @@ return {
               },
               schema = {
                 model = {
-                  default = "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+                  -- default = "Qwen/Qwen3-Coder-480B-A35B-Instruct",
                   -- default = "Qwen/Qwen3-235B-A22B-Instruct-2507",
-                  -- default = "zai-org/GLM-4.5",
+                  -- default = "Qwen/Qwen3-Next-80B-A3B-Instruct"
+                  default = "zai-org/GLM-4.6",
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
@@ -278,7 +279,7 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "polza",
+          adapter = "sbercloud",
         },
         inline = {
           adapter = "sbercloud",
