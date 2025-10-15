@@ -80,7 +80,10 @@ return {
         extra_args = { "--dialect", "postgres" }, -- change to your dialect
       },
       -- null_ls.builtins.completion.spell,
-      null_ls.builtins.diagnostics.codespell,
+      -- See https://github.com/codespell-project/codespell?tab=readme-ov-file#usage for other settings
+      null_ls.builtins.diagnostics.codespell.with {
+        extra_args = { "-L ot" },
+      },
       null_ls.builtins.diagnostics.protolint,
       null_ls.builtins.formatting.protolint,
       -- null_ls.builtins.diagnostics.protoc_gen_lint,
