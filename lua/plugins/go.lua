@@ -107,7 +107,7 @@ return {
               usePlaceholders = false,
               experimentalPostfixCompletions = true,
               vulncheck = "Imports",
-              gofumpt = false,
+              gofumpt = true,
               -- expandWorkspaceToModule = false,
             },
           },
@@ -130,7 +130,7 @@ return {
         -- settings with {}
         go = "go", -- go command, can be go[default] or go1.18beta1
         goimports = "golines", -- goimports command, can be gopls[default] or either goimports or golines if need to split long lines
-        gofmt = "golines", -- gofmt through gopls: alternative is gofumpt, goimports, golines, gofmt, etc
+        gofmt = "gofumpt", -- gofmt through gopls: alternative is gofumpt, goimports, golines, gofmt, etc
         fillstruct = "gopls", -- set to fillstruct if gopls fails to fill struct
         max_line_len = 120, -- max line length in golines format, Target maximum line length for golines
         tag_transform = false, -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
@@ -251,7 +251,7 @@ return {
     end,
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
-    -- build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
 
   {

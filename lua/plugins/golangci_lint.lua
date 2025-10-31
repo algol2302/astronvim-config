@@ -9,14 +9,16 @@ return {
       --   -- this must be a function to get access to the `lspconfig` module
       golangci_lint_ls = {
         cmd = { "golangci-lint-langserver" },
+        root_markers = { ".git", "go.mod" },
         filetypes = { "go", "gomod" },
-        root_dir = function(fname) return vim.fs.dirname(fname) end,
+        -- root_dir = function(fname) return vim.fs.dirname(fname) end,
         init_options = {
           command = {
             "golangci-lint",
             "run",
-            "--out-format",
-            "json",
+            "--output.json.path",
+            "stdout",
+            "--show-stats=false",
             "--issues-exit-code=1",
           },
         },
