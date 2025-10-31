@@ -279,13 +279,13 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "sbercloud",
+          adapter = "polza",
         },
         inline = {
-          adapter = "sbercloud",
+          adapter = "polza",
         },
         cmd = {
-          adapter = "sbercloud",
+          adapter = "polza",
         },
       },
       display = {
