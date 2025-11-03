@@ -36,4 +36,5 @@ return {
   { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
   { import = "astrocommunity.utility.mason-tool-installer-nvim" },
   { import = "astrocommunity.indent.indent-rainbowline" },
+  { import = "astrocommunity.test.neotest" },
 }
