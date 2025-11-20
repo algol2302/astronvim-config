@@ -223,7 +223,7 @@ return {
               },
               schema = {
                 model = {
-                  default = "deepseek/deepseek-chat-v3-0324:free",
+                  default = "z-ai/glm-4.6",
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
@@ -279,13 +279,13 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "polza",
+          adapter = "openrouter",
         },
         inline = {
-          adapter = "polza",
+          adapter = "openrouter",
         },
         cmd = {
-          adapter = "polza",
+          adapter = "openrouter",
         },
       },
       display = {
