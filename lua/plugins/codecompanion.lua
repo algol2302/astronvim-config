@@ -224,9 +224,9 @@ return {
               },
               schema = {
                 model = {
-                  -- default = "z-ai/glm-4.6",
+                  default = "z-ai/glm-4.6",
                   -- default = "anthropic/claude-sonnet-4.5",
-                  default = "deepseek/deepseek-v3.2",
+                  -- default = "deepseek/deepseek-v3.2",
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
