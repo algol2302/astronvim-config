@@ -235,6 +235,26 @@ return {
               },
             })
           end,
+          z_ai = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://api.z.ai/api/coding/paas",
+                api_key = require("helpers.secret").get "~/Secrets/z_ai_key.gpg",
+                chat_url = "/v4/chat/completions",
+              },
+              schema = {
+                model = {
+                  default = "glm-4.6",
+                  -- default = "anthropic/claude-sonnet-4.5",
+                  -- default = "deepseek/deepseek-v3.2",
+                },
+                temperature = temperature,
+                max_completion_tokens = max_completion_tokens,
+                stop = stop,
+                logit_bias = logit_bias,
+              },
+            })
+          end,
           polza = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               env = {
@@ -282,13 +302,13 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "openrouter",
+          adapter = "z_ai",
         },
         inline = {
-          adapter = "openrouter",
+          adapter = "z_ai",
         },
         cmd = {
-          adapter = "openrouter",
+          adapter = "z_ai",
         },
       },
       display = {
