@@ -164,27 +164,6 @@ return {
               },
             })
           end,
-          sbercloud = function()
-            return require("codecompanion.adapters").extend("openai_compatible", {
-              env = {
-                url = "https://foundation-models.api.cloud.ru",
-                api_key = require("helpers.secret").get "~/Secrets/sbercloud_api_key.gpg",
-                -- chat_url = "/v1/chat/completions",
-              },
-              schema = {
-                model = {
-                  -- default = "Qwen/Qwen3-Coder-480B-A35B-Instruct",
-                  -- default = "Qwen/Qwen3-235B-A22B-Instruct-2507",
-                  -- default = "Qwen/Qwen3-Next-80B-A3B-Instruct"
-                  default = "zai-org/GLM-4.6",
-                },
-                temperature = temperature,
-                max_completion_tokens = max_completion_tokens,
-                stop = stop,
-                logit_bias = logit_bias,
-              },
-            })
-          end,
           yandex_gpt = function()
             -- Available yandex models:
             --  https://yandex.cloud/ru/docs/foundation-models/concepts/yandexgpt/models
