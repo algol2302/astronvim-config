@@ -119,7 +119,6 @@ local logit_bias = {
 return {
   {
     "codecompanion.nvim",
-    -- version = "17.33.0",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -131,6 +130,7 @@ return {
         http = {
           opts = {
             show_defaults = false,
+            show_presets = false,
             show_model_choices = true,
           },
           bothub = function()
@@ -224,8 +224,24 @@ return {
               schema = {
                 model = {
                   default = "glm-4.6",
-                  -- default = "anthropic/claude-sonnet-4.5",
-                  -- default = "deepseek/deepseek-v3.2",
+                },
+                temperature = temperature,
+                max_completion_tokens = max_completion_tokens,
+                stop = stop,
+                logit_bias = logit_bias,
+              },
+            })
+          end,
+          z_ai_light = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://api.z.ai/api/coding/paas",
+                api_key = require("helpers.secret").get "~/Secrets/z_ai_key.gpg",
+                chat_url = "/v4/chat/completions",
+              },
+              schema = {
+                model = {
+                  default = "glm-4.5-air",
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
@@ -316,7 +332,7 @@ return {
             -- Number of days after which chats are automatically deleted (0 to disable)
             expiration_days = 0,
             -- Picker interface (auto resolved to a valid picker)
-            picker = "snacks", --- ("telescope", "snacks", "fzf-lua", or "default")
+            picker = "default", --- ("telescope", "snacks", "fzf-lua", or "default")
             ---Optional filter function to control which chats are shown when browsing
             chat_filter = nil, -- function(chat_data) return boolean end
             -- Customize picker keymaps (optional)
@@ -329,9 +345,9 @@ return {
             auto_generate_title = true,
             title_generation_opts = {
               ---Adapter for generating titles (defaults to current chat adapter)
-              adapter = nil, -- "copilot"
+              adapter = "z_ai_light", -- "copilot"
               ---Model for generating titles (defaults to current chat model)
-              model = nil, -- "gpt-4o"
+              model = "glm-4.5-air", -- "gpt-4o"
               ---Number of user prompts after which to refresh the title (0 to disable)
               refresh_every_n_prompts = 0, -- e.g., 3 to refresh after every 3rd user prompt
               ---Maximum number of times to refresh the title (default: 3)
