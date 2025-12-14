@@ -145,15 +145,15 @@ return {
               schema = {
                 model = {
                   default = "deepseek-chat-v3-0324:free",
-                  choices = {
-                    "claude-sonnet-4",
-                    "deepseek-chat-v3-0324:free",
-                    "gemini-2.5-pro",
-                    "gpt-4.1",
-                    "gpt-5",
-                    "gpt-5-mini",
-                    "grok-4",
-                  },
+                  -- choices = {
+                  --   "claude-sonnet-4",
+                  --   "deepseek-chat-v3-0324:free",
+                  --   "gemini-2.5-pro",
+                  --   "gpt-4.1",
+                  --   "gpt-5",
+                  --   "gpt-5-mini",
+                  --   "grok-4",
+                  -- },
                   -- default = "o4-mini-high", -- define llm model to be used
                   -- default = "deepseek-r1-671b", -- define llm model to be used
                 },
@@ -179,13 +179,13 @@ return {
                   default = "gpt://"
                     .. require("helpers.secret").get "~/Secrets/ya_dir.gpg"
                     .. "/qwen3-235b-a22b-fp8/latest",
-                  choices = {
-                    "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/qwen3-235b-a22b-fp8/latest",
-                    "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/yandexgpt/latest",
-                    "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/yandexgpt-lite/latest",
-                    "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/gpt-oss-120b/latest",
-                    "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/gpt-oss-20b/latest",
-                  },
+                  -- choices = {
+                  --   "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/qwen3-235b-a22b-fp8/latest",
+                  --   "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/yandexgpt/latest",
+                  --   "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/yandexgpt-lite/latest",
+                  --   "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/gpt-oss-120b/latest",
+                  --   "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/gpt-oss-20b/latest",
+                  -- },
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
