@@ -119,7 +119,7 @@ local logit_bias = {
 return {
   {
     "codecompanion.nvim",
-    version = "17.33.0",
+    -- version = "17.33.0",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -318,8 +318,9 @@ return {
           prompt = "Prompt ", -- Prompt used for interactive LLM calls
           provider = "default", -- Can be "default", "telescope", "fzf_lua", "mini_pick" or "snacks". If not specified, the plugin will autodetect installed providers.
           opts = {
-            show_default_actions = true, -- Show the default actions in the action palette?
-            show_default_prompt_library = true, -- Show the default prompt library in the action palette?
+            show_preset_actions = true, -- Show the preset actions in the action palette?
+            show_preset_prompts = true, -- Show the preset prompts in the action palette?
+            title = "CodeCompanion actions", -- The title of the action palette
           },
         },
       },
