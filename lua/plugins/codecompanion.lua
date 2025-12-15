@@ -305,6 +305,26 @@ return {
         cmd = {
           adapter = "z_ai",
         },
+        background = {
+          adapter = {
+            name = "z_ai_light",
+            model = "glm-4.5-air",
+          },
+          -- Callbacks within the plugin that you can attach background actions to
+          chat = {
+            callbacks = {
+              ["on_ready"] = {
+                actions = {
+                  "interactions.background.builtin.chat_make_title",
+                },
+                enabled = false,
+              },
+            },
+            opts = {
+              enabled = false, -- Enable ALL background chat interactions?
+            },
+          },
+        },
       },
       display = {
         action_palette = {
