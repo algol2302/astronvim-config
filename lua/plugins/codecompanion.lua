@@ -145,17 +145,15 @@ return {
               schema = {
                 model = {
                   default = "deepseek-chat-v3-0324:free",
-                  -- choices = {
-                  --   "claude-sonnet-4",
-                  --   "deepseek-chat-v3-0324:free",
-                  --   "gemini-2.5-pro",
-                  --   "gpt-4.1",
-                  --   "gpt-5",
-                  --   "gpt-5-mini",
-                  --   "grok-4",
-                  -- },
-                  -- default = "o4-mini-high", -- define llm model to be used
-                  -- default = "deepseek-r1-671b", -- define llm model to be used
+                  choices = {
+                    "claude-sonnet-4",
+                    "deepseek-chat-v3-0324:free",
+                    "gemini-2.5-pro",
+                    "gpt-4.1",
+                    "gpt-5",
+                    "gpt-5-mini",
+                    "grok-4",
+                  },
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
@@ -179,13 +177,13 @@ return {
                   default = "gpt://"
                     .. require("helpers.secret").get "~/Secrets/ya_dir.gpg"
                     .. "/qwen3-235b-a22b-fp8/latest",
-                  -- choices = {
-                  --   "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/qwen3-235b-a22b-fp8/latest",
-                  --   "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/yandexgpt/latest",
-                  --   "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/yandexgpt-lite/latest",
-                  --   "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/gpt-oss-120b/latest",
-                  --   "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/gpt-oss-20b/latest",
-                  -- },
+                  choices = {
+                    "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/qwen3-235b-a22b-fp8/latest",
+                    "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/yandexgpt/latest",
+                    "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/yandexgpt-lite/latest",
+                    "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/gpt-oss-120b/latest",
+                    "gpt://" .. require("helpers.secret").get "~/Secrets/ya_dir.gpg" .. "/gpt-oss-20b/latest",
+                  },
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
@@ -203,9 +201,21 @@ return {
               },
               schema = {
                 model = {
-                  -- default = "z-ai/glm-4.6",
                   default = "anthropic/claude-sonnet-4.5",
-                  -- default = "deepseek/deepseek-v3.2",
+                  choices = {
+                    "anthropic/claude-sonnet-4.5",
+                    "z-ai/glm-4.6",
+                    "deepseek/deepseek-v3.2",
+                    "mistralai/devstral-2512:free",
+                    "openai/gpt-5.2",
+                    "openai/gpt-oss-120b",
+                    "google/gemini-3-pro-preview",
+                    "kwaipilot/kat-coder-pro:free",
+                    "minimax/minimax-m2",
+                    "x-ai/grok-code-fast-1",
+                    "qwen/qwen3-coder",
+                    "moonshotai/kimi-k2-thinking",
+                  },
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
