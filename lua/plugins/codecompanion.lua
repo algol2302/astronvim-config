@@ -202,7 +202,7 @@ return {
                   default = "anthropic/claude-sonnet-4.5",
                   choices = {
                     "anthropic/claude-sonnet-4.5",
-                    "z-ai/glm-4.6",
+                    "z-ai/glm-4.7",
                     "deepseek/deepseek-v3.2",
                     "mistralai/devstral-2512:free",
                     "openai/gpt-5.2",
@@ -231,7 +231,7 @@ return {
               },
               schema = {
                 model = {
-                  default = "glm-4.6",
+                  default = "glm-4.7",
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
@@ -267,7 +267,7 @@ return {
               },
               schema = {
                 model = {
-                  default = "z-ai/glm-4.6",
+                  default = "z-ai/glm-4.7",
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
