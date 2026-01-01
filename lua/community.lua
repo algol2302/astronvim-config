@@ -37,4 +37,6 @@ return {
   { import = "astrocommunity.utility.mason-tool-installer-nvim" },
   { import = "astrocommunity.indent.indent-rainbowline" },
   { import = "astrocommunity.test.neotest" },
+  { import = "astrocommunity.pack.helm" },
+  { import = "astrocommunity.pack.yaml" },
 }
