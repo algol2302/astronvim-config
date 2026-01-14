@@ -1,5 +1,6 @@
 return {
   "AstroNvim/astrolsp",
+  priority = 50,
   ---@type AstroLSPOpts
   opts = function(plugin, opts)
     opts.servers = opts.servers or {}

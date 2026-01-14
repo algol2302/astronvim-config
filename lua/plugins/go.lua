@@ -2,6 +2,7 @@ return {
   {
     "AstroNvim/astrolsp",
     optional = true,
+    priority = 100, --Higher priority numbers load earlier in lazy.nvim
     ---@type AstroLSPOpts
     opts = {
       ---@diagnostic disable-next-line: missing-fields
