@@ -52,6 +52,22 @@ return {
         background = "light",
       },
     },
+    -- Autocmds can be configured here
+    autocmds = {
+      markdown_wrap = {
+        {
+          event = { "FileType" },
+          pattern = { "markdown" },
+          desc = "Enable wrapping for markdown files",
+          callback = function()
+            vim.opt_local.wrap = true
+            vim.opt_local.linebreak = true
+            vim.opt_local.breakindent = true
+            vim.opt_local.textwidth = 0
+          end,
+        },
+      },
+    },
     -- Mappings can be configured through AstroCore as well.
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
