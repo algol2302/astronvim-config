@@ -16,7 +16,7 @@
   "blink.compat": { "branch": "main", "commit": "2ed6d9a28b07fa6f3bface818470605f8896408c" },
   "cmp-dap": { "branch": "master", "commit": "ea92773e84c0ad3288c3bc5e452ac91559669087" },
   "codecompanion-history.nvim": { "branch": "main", "commit": "8c6ca9f998aeef89f3543343070f8562bf911fb4" },
-  "codecompanion.nvim": { "branch": "main", "commit": "8ebbcc27d20e9ac6e7491de6ef9aac1fbf6277a2" },
+  "codecompanion.nvim": { "branch": "main", "commit": "e0780fa9fda504ffb89307cabcb6cbe1ce8eb60c" },
   "cspell.nvim": { "branch": "main", "commit": "5feecef8d109f5460c576596aba44a6253127aa4" },
   "csvview.nvim": { "branch": "main", "commit": "da4106db5c44bfdccd0f76142c0f2740bcae8e5c" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
