@@ -39,4 +39,5 @@ return {
   { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.pack.helm" },
   { import = "astrocommunity.pack.yaml" },
+  { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
 }
