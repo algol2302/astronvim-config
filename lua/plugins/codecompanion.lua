@@ -127,6 +127,15 @@ return {
     },
     opts = {
       adapters = {
+        acp = {
+          claude_code = function()
+            return require("codecompanion.adapters").extend("claude_code", {
+              env = {
+                CLAUDE_CODE_OAUTH_TOKEN = require("helpers.secret").get "~/Secrets/claude.gpg",
+              },
+            })
+          end,
+        },
         http = {
           opts = {
             show_defaults = false,
@@ -307,18 +316,18 @@ return {
       },
       interactions = {
         chat = {
-          adapter = "z_ai",
+          adapter = "claude_code",
         },
         inline = {
-          adapter = "z_ai",
+          adapter = "claude_code",
         },
         cmd = {
-          adapter = "z_ai",
+          adapter = "claude_code",
         },
         background = {
           adapter = {
-            name = "z_ai_light",
-            model = "glm-4.5-air",
+            name = "claude_code",
+            model = "haiku",
           },
           -- Callbacks within the plugin that you can attach background actions to
           chat = {
