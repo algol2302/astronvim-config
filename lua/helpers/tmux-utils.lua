@@ -1,9 +1,7 @@
 local M = {}
 
 -- Check if we're running inside tmux
-local function is_tmux()
-  return vim.env.TMUX ~= nil
-end
+local function is_tmux() return vim.env.TMUX ~= nil end
 
 -- Execute tmux command and return output
 local function exec_tmux(args)
@@ -15,45 +13,41 @@ local function exec_tmux(args)
   local cmd = "tmux " .. args
   local result = vim.fn.system(cmd)
 
-  if vim.v.shell_error ~= 0 then
-    return nil
-  end
+  if vim.v.shell_error ~= 0 then return nil end
 
   return result
 end
 
 -- Get current pane ID
 local function get_current_pane()
-  local result = exec_tmux("display-message -p '#{pane_id}'")
+  local result = exec_tmux "display-message -p '#{pane_id}'"
   if not result then return nil end
   return vim.trim(result)
 end
 
 -- Get list of all panes with their info
 local function get_panes()
-  local result = exec_tmux("list-panes -F '#{pane_id}|#{pane_index}|#{pane_current_command}'")
+  local result = exec_tmux "list-panes -F '#{pane_id}|#{pane_index}|#{pane_current_command}'"
   if not result then return {} end
 
   local panes = {}
-  for line in result:gmatch("[^\n]+") do
-    local id, index, cmd = line:match("([^|]+)|([^|]+)|([^|]+)")
-    if id then
-      table.insert(panes, {
-        id = id,
-        index = tonumber(index),
-        command = cmd,
-      })
-    end
+  for line in result:gmatch "[^\n]+" do
+    local id, index, cmd = line:match "([^|]+)|([^|]+)|([^|]+)"
+    if id then table.insert(panes, {
+      id = id,
+      index = tonumber(index),
+      command = cmd,
+    }) end
   end
   return panes
 end
 
 -- Count the number of panes in the current window
 local function count_panes()
-  local result = exec_tmux("list-panes | wc -l")
+  local result = exec_tmux "list-panes | wc -l"
   if not result then return 0 end
 
-  return tonumber(result:match("%d+")) or 0
+  return tonumber(result:match "%d+") or 0
 end
 
 -- Get the "other" pane (works when there are exactly 2 panes)
@@ -62,14 +56,10 @@ local function get_other_pane()
   if not current then return nil end
 
   local panes = get_panes()
-  if #panes ~= 2 then
-    return nil
-  end
+  if #panes ~= 2 then return nil end
 
   for _, pane in ipairs(panes) do
-    if pane.id ~= current then
-      return pane.id
-    end
+    if pane.id ~= current then return pane.id end
   end
   return nil
 end
@@ -119,14 +109,10 @@ local function get_current_test_name()
   local bufnr = vim.api.nvim_get_current_buf()
   local filetype = vim.bo[bufnr].filetype
 
-  if filetype ~= "go" then
-    return nil
-  end
+  if filetype ~= "go" then return nil end
 
-  local filename = vim.fn.expand("%:t")
-  if not filename:match("_test%.go$") then
-    return nil
-  end
+  local filename = vim.fn.expand "%:t"
+  if not filename:match "_test%.go$" then return nil end
 
   -- Try using treesitter first
   local has_ts, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
@@ -137,9 +123,7 @@ local function get_current_test_name()
         local name_node = node:field("name")[1]
         if name_node then
           local name = vim.treesitter.get_node_text(name_node, bufnr)
-          if name:match("^Test") then
-            return name
-          end
+          if name:match "^Test" then return name end
         end
       end
       node = node:parent()
@@ -152,42 +136,19 @@ local function get_current_test_name()
 
   -- Search backwards from cursor for test function
   for i = #lines, 1, -1 do
-    local test_name = lines[i]:match("^func%s+(Test%w+)%s*%(")
-    if test_name then
-      return test_name
-    end
+    local test_name = lines[i]:match "^func%s+(Test%w+)%s*%("
+    if test_name then return test_name end
   end
 
   return nil
 end
 
--- Run current Go test in docker-compose
-function M.run_go_test()
+-- Helper to send test command to tmux pane
+local function send_test_command(cmd, notification_msg)
   if not is_tmux() then
     vim.notify("Not running in tmux", vim.log.levels.WARN)
     return
   end
-
-  local test_name = get_current_test_name()
-  if not test_name then
-    vim.notify("No test function found. Make sure cursor is inside a test function.", vim.log.levels.WARN)
-    return
-  end
-
-  -- Get the current file's absolute path
-  local file_path = vim.fn.expand("%:p")
-
-  -- Extract relative path starting from /app/
-  local relative_path = file_path:match("/app/(.*)")
-  if not relative_path then
-    vim.notify("Could not determine path relative to /app/", vim.log.levels.WARN)
-    return
-  end
-
-  -- Get the directory of the file (Go tests are run per package)
-  local package_path = "./" .. vim.fn.fnamemodify(relative_path, ":h")
-
-  local cmd = string.format("docker-compose exec app richgo test %s -run %s -v --failfast", package_path, test_name)
 
   -- Get target pane
   local pane_id = get_other_pane()
@@ -200,13 +161,11 @@ function M.run_go_test()
       -- Multiple panes available, let user select
       vim.ui.select(panes, {
         prompt = "Select target pane:",
-        format_item = function(pane)
-          return string.format("Pane %d (%s)", pane.index, pane.command)
-        end,
+        format_item = function(pane) return string.format("Pane %d (%s)", pane.index, pane.command) end,
       }, function(choice)
         if choice then
           if send_to_pane(choice.id, cmd) then
-            vim.notify(string.format("Running test in pane %d", choice.index), vim.log.levels.INFO)
+            vim.notify(notification_msg or string.format("Running test in pane %d", choice.index), vim.log.levels.INFO)
           end
         end
       end)
@@ -216,10 +175,92 @@ function M.run_go_test()
 
   -- Send to the other pane
   if send_to_pane(pane_id, cmd) then
-    vim.notify(string.format("Running: %s", test_name), vim.log.levels.INFO)
+    vim.notify(notification_msg or "Running tests", vim.log.levels.INFO)
   else
     vim.notify("Failed to send test command", vim.log.levels.ERROR)
   end
+end
+
+-- Get package path for current file
+local function get_package_path()
+  local file_path = vim.fn.expand "%:p"
+  local relative_path = file_path:match "/app/(.*)"
+
+  if not relative_path then
+    vim.notify("Could not determine path relative to /app/", vim.log.levels.WARN)
+    return nil
+  end
+
+  return "./" .. vim.fn.fnamemodify(relative_path, ":h")
+end
+
+-- Run current Go test in docker-compose
+function M.run_go_test()
+  local test_name = get_current_test_name()
+  if not test_name then
+    vim.notify("No test function found. Make sure cursor is inside a test function.", vim.log.levels.WARN)
+    return
+  end
+
+  local package_path = get_package_path()
+  if not package_path then return end
+
+  local cmd = string.format("docker-compose exec app richgo test %s -run %s -v --failfast", package_path, test_name)
+  send_test_command(cmd, string.format("Running: %s", test_name))
+end
+
+-- Run all tests in current file
+function M.run_go_file_tests()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local filetype = vim.bo[bufnr].filetype
+
+  if filetype ~= "go" then
+    vim.notify("Not a Go file", vim.log.levels.WARN)
+    return
+  end
+
+  local filename = vim.fn.expand "%:t"
+  if not filename:match "_test%.go$" then
+    vim.notify("Not a Go test file", vim.log.levels.WARN)
+    return
+  end
+
+  local package_path = get_package_path()
+  if not package_path then return end
+
+  local cmd = string.format("docker-compose exec app richgo test %s -v --failfast", package_path)
+  send_test_command(cmd, string.format("Running all tests in: %s", filename))
+end
+
+-- Run all tests in current package
+function M.run_go_package_tests()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local filetype = vim.bo[bufnr].filetype
+
+  if filetype ~= "go" then
+    vim.notify("Not a Go file", vim.log.levels.WARN)
+    return
+  end
+
+  local package_path = get_package_path()
+  if not package_path then return end
+
+  local cmd = string.format("docker-compose exec app richgo test %s -v --failfast", package_path)
+  send_test_command(cmd, string.format("Running all tests in package: %s", package_path))
+end
+
+-- Run all tests in the project
+function M.run_go_project_tests()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local filetype = vim.bo[bufnr].filetype
+
+  if filetype ~= "go" then
+    vim.notify("Not a Go file", vim.log.levels.WARN)
+    return
+  end
+
+  local cmd = "make test-cleaned-cache"
+  send_test_command(cmd, "Running all tests in project")
 end
 
 return M
