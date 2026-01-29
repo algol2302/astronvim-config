@@ -123,7 +123,7 @@ local function get_current_test_name()
         local name_node = node:field("name")[1]
         if name_node then
           local name = vim.treesitter.get_node_text(name_node, bufnr)
-          if name:match "^Test" then return name end
+          if name:match "^Test" then return name .. "$" end
         end
       end
       node = node:parent()
@@ -137,7 +137,7 @@ local function get_current_test_name()
   -- Search backwards from cursor for test function
   for i = #lines, 1, -1 do
     local test_name = lines[i]:match "^func%s+(Test%w+)%s*%("
-    if test_name then return test_name end
+    if test_name then return test_name .. "$" end
   end
 
   return nil
