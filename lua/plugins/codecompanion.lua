@@ -319,7 +319,7 @@ return {
           adapter = "claude_code",
         },
         inline = {
-          adapter = "claude_code",
+          adapter = "z_ai",
         },
         cmd = {
           adapter = "claude_code",
