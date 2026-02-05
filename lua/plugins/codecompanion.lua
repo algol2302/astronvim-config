@@ -199,6 +199,29 @@ return {
               },
             })
           end,
+          sbercloud = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://foundation-models.api.cloud.ru",
+                api_key = require("helpers.secret").get "~/Secrets/sbercloud_api_key.gpg",
+                -- chat_url = "/v1/chat/completions",
+              },
+              schema = {
+                model = {
+                  default = "zai-org/GLM-4.7",
+                  choices = {
+                    "zai-org/GLM-4.7",
+                    "zai-org/GLM-4.7-Flash",
+                    "Qwen/Qwen3-Coder-Next",
+                  },
+                },
+                temperature = temperature,
+                max_completion_tokens = max_completion_tokens,
+                stop = stop,
+                logit_bias = logit_bias,
+              },
+            })
+          end,
           openrouter = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               env = {
