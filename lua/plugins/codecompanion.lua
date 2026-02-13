@@ -265,7 +265,7 @@ return {
               },
               schema = {
                 model = {
-                  default = "glm-4.7",
+                  default = "glm-5",
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
@@ -339,18 +339,18 @@ return {
       },
       interactions = {
         chat = {
-          adapter = "claude_code",
+          adapter = "z_ai",
         },
         inline = {
           adapter = "z_ai",
         },
         cmd = {
-          adapter = "claude_code",
+          adapter = "z_ai",
         },
         background = {
           adapter = {
-            name = "claude_code",
-            model = "haiku",
+            name = "z_ai_light",
+            model = "glm-4.5-air",
           },
           -- Callbacks within the plugin that you can attach background actions to
           chat = {
