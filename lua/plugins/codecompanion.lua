@@ -138,7 +138,6 @@ return {
         },
         http = {
           opts = {
-            show_defaults = false,
             show_presets = false,
             show_model_choices = true,
           },
@@ -340,6 +339,34 @@ return {
       interactions = {
         chat = {
           adapter = "z_ai",
+          opts = {
+            ---@diagnostic disable-next-line: unused-local
+            system_prompt = function(opts)
+              return string.format(
+                [[You are an AI programming assistant named "CodeCompanion". You are currently plugged in to the Neovim text editor on a user's machine.
+
+You must:
+- Follow the user's requirements carefully and to the letter.
+- Keep your answers short and impersonal, especially if the user responds with context outside of your tasks.
+- Minimize other prose.
+- Use Markdown formatting in your answers.
+- Include the programming language name at the start of the Markdown code blocks.
+- Avoid including line numbers in code blocks.
+- Avoid wrapping the whole response in triple backticks.
+- Only return code that's relevant to the task at hand. You may not need to return all of the code that the user has shared.
+- Use actual line breaks instead of '\n' in your response to begin new lines.
+- Use '\n' only when you want a literal backslash followed by a character 'n'.
+- All non-code text responses must be written in the %s language.
+
+When given a task:
+1. Think step-by-step and describe your plan for what to build in pseudocode, written out in great detail, unless asked not to do so.
+2. Output the code in a single code block, being careful to only return relevant code.
+3. You should always generate short suggestions for the next user turns that are relevant to the conversation.
+4. You can only give one reply for each conversation turn.]],
+                opts.language
+              )
+            end,
+          },
         },
         inline = {
           adapter = "z_ai",
@@ -448,21 +475,21 @@ return {
             },
           },
         },
-        mcphub = {
-          callback = "mcphub.extensions.codecompanion",
-          opts = {
-            -- MCP Tools
-            make_tools = true, -- Make individual tools (@server__tool) and server groups (@server) from MCP servers
-            show_server_tools_in_chat = true, -- Show individual tools in chat completion (when make_tools=true)
-            add_mcp_prefix_to_tool_names = false, -- Add mcp__ prefix (e.g `@mcp__github`, `@mcp__neovim__list_issues`)
-            show_result_in_chat = true, -- Show tool results directly in chat buffer
-            format_tool = nil, -- function(tool_name:string, tool: CodeCompanion.Agent.Tool) : string Function to format tool names to show in the chat buffer
-            -- MCP Resources
-            make_vars = true, -- Convert MCP resources to #variables for prompts
-            -- MCP Prompts
-            make_slash_commands = true, -- Add MCP prompts as /slash commands
-          },
-        },
+        -- mcphub = {
+        --   callback = "mcphub.extensions.codecompanion",
+        --   opts = {
+        --     -- MCP Tools
+        --     make_tools = true, -- Make individual tools (@server__tool) and server groups (@server) from MCP servers
+        --     show_server_tools_in_chat = true, -- Show individual tools in chat completion (when make_tools=true)
+        --     add_mcp_prefix_to_tool_names = false, -- Add mcp__ prefix (e.g `@mcp__github`, `@mcp__neovim__list_issues`)
+        --     show_result_in_chat = true, -- Show tool results directly in chat buffer
+        --     format_tool = nil, -- function(tool_name:string, tool: CodeCompanion.Agent.Tool) : string Function to format tool names to show in the chat buffer
+        --     -- MCP Resources
+        --     make_vars = true, -- Convert MCP resources to #variables for prompts
+        --     -- MCP Prompts
+        --     make_slash_commands = true, -- Add MCP prompts as /slash commands
+        --   },
+        -- },
       },
       prompt_library = {
         ["Code Edit"] = {
@@ -470,7 +497,7 @@ return {
           description = "Prompt the LLM from Neovim",
           opts = {
             is_slash_cmd = false,
-            short_name = "code-edit-inline",
+            alias = "code-edit-inline",
             user_prompt = true,
           },
           prompts = {
@@ -495,7 +522,7 @@ return {
             is_slash_cmd = false,
             user_prompt = false,
             placement = "replace",
-            short_name = "text-fix-spelling-inline",
+            alias = "text-fix-spelling-inline",
             auto_submit = true,
           },
           prompts = {
@@ -514,53 +541,30 @@ Return only the corrected text.
                 tag = "system_tag",
               },
             },
-          },
-          {
-            role = "user",
-            content = function(context)
-              local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
+            {
+              role = "user",
+              content = function(context)
+                local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
-              return string.format(
-                [[
+                return string.format(
+                  [[
 Fix spelling for this:
 
 ```%s
 %s
 ```
 ]],
-                context.filetype,
-                code
-              )
-            end,
-            opts = {
-              contains_code = true,
+                  context.filetype,
+                  code
+                )
+              end,
+              opts = {
+                contains_code = true,
+              },
             },
           },
         },
       },
-      ---@diagnostic disable-next-line: unused-local
-      system_prompt = function(opts)
-        return [[You are an AI programming assistant named "CodeCompanion". You are currently plugged in to the Neovim text editor on a user's machine.
-
-You must:
-- Follow the user's requirements carefully and to the letter.
-- Keep your answers short and impersonal, especially if the user responds with context outside of your tasks.
-- Minimize other prose.
-- Use Markdown formatting in your answers.
-- Include the programming language name at the start of the Markdown code blocks.
-- Avoid including line numbers in code blocks.
-- Avoid wrapping the whole response in triple backticks.
-- Only return code that's relevant to the task at hand. You may not need to return all of the code that the user has shared.
-- Use actual line breaks instead of '\n' in your response to begin new lines.
-- Use '\n' only when you want a literal backslash followed by a character 'n'.
-- All non-code text responses must be written in the %s language.
-
-When given a task:
-1. Think step-by-step and describe your plan for what to build in pseudocode, written out in great detail, unless asked not to do so.
-2. Output the code in a single code block, being careful to only return relevant code.
-3. You should always generate short suggestions for the next user turns that are relevant to the conversation.
-4. You can only give one reply for each conversation turn.]]
-      end,
     },
   },
 }
