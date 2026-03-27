@@ -264,7 +264,7 @@ return {
               },
               schema = {
                 model = {
-                  default = "glm-5",
+                  default = "glm-5.1",
                 },
                 temperature = temperature,
                 max_completion_tokens = max_completion_tokens,
