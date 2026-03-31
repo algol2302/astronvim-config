@@ -12,7 +12,8 @@ return {
       protobuf_language_server = {
         cmd = { "protobuf-language-server" },
         filetypes = { "proto", "cpp" },
-        root_dir = require("lspconfig.util").root_pattern ".git",
+        -- v6: use root_markers instead of lspconfig.util.root_pattern
+        root_markers = { ".git" },
         single_file_support = true,
         settings = {
           ["additional-proto-dirs"] = {

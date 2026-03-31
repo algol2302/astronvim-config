@@ -42,7 +42,7 @@ function minuet_fidget_spinner:create_progress_handle(request)
   local progress = require "fidget.progress"
 
   return progress.handle.create {
-    title = " Requesting completion " .. request.data.name,
+    title = " Requesting completion " .. request.data.name,
     message = "In progress " .. request.data.n_requests .. "...",
     lsp_client = {
       name = request.data.name,
@@ -70,7 +70,8 @@ return {
     dependences = {
       "nvim-lua/plenary.nvim",
       "j-hui/fidget.nvim",
-      "Saghen/blink.cmp",
+      -- v6: updated plugin name casing
+      "saghen/blink.cmp",
     },
     config = function()
       require("minuet").setup {

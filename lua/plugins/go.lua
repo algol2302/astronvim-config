@@ -47,13 +47,8 @@ return {
             "gopls", -- share the gopls instance if there is one already
             "-remote.debug=:0",
           },
-          root_dir = function(fname)
-            local has_lsp, lspconfig = pcall(require, "lspconfig")
-            if has_lsp then
-              local util = lspconfig.util
-              return util.root_pattern(".git", "go.work", "go.mod")(fname) or vim.fs.dirname(fname)
-            end
-          end,
+          -- v6: use root_markers instead of root_dir function with lspconfig
+          root_markers = { "go.mod", "go.work", ".git" },
           flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
           settings = {
             gopls = {
@@ -138,7 +133,7 @@ return {
         tag_options = "json=omitempty", -- sets options sent to gomodifytags, i.e., json=omitempty
         gotests_template = "", -- sets gotests -template parameter (check gotests for details)
         gotests_template_dir = "", -- sets gotests -template_dir parameter (check gotests for details)
-        comment_placeholder = "", -- comment_placeholder your cool placeholder e.g. 󰟓       
+        comment_placeholder = "", -- comment_placeholder your cool placeholder e.g. 󰟓
         icons = false, -- { breakpoint = "🧘", currentpos = "🏃" }, -- setup to `false` to disable icons setup
         verbose = false, -- output loginf in messages
         lsp_cfg = false, -- true: use non-default gopls setup specified in go/lsp.lua
@@ -256,32 +251,11 @@ return {
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    optional = true,
-    opts = function(_, opts)
-      if opts.ensure_installed ~= "all" then
-        opts.ensure_installed =
-          require("astrocore").list_insert_unique(opts.ensure_installed, { "go", "gomod", "gosum", "gowork" })
-      end
-    end,
-  },
-
-  {
     "jay-babu/mason-null-ls.nvim",
     optional = true,
     opts = function(_, opts)
       opts.ensure_installed =
         require("astrocore").list_insert_unique(opts.ensure_installed, { "gomodifytags", "iferr", "impl", "goimports" })
-    end,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    optional = true,
-    opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "gopls",
-        -- version = "v0.16.2", -- the last version with fieldalignment
-      })
     end,
   },
   {

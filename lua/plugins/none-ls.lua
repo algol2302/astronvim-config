@@ -20,19 +20,9 @@ return {
         -- config file from within the `Add word to cspell json file` action.
         --
         -- See the currently supported files in https://github.com/davidmh/cspell.nvim/blob/main/lua/cspell/helpers.lua
-        -- config_file_preferred_name = "/home/algol/.config/nvim/spell/cspell.json",
 
         --- A way to define your own logic to find the CSpell configuration file.
-        -- ---@params cwd The same current working directory defined in the source,
-        --             defaulting to vim.loop.cwd()
-        -- ---@return string|nil The path of the json file
-        -- find_json = function(cwd) end,
-
-        find_json = function(_) return vim.fn.expand "~/.config/nvim/spell/cspell.json" end,
-        --- A way to define your own logic to find the CSpell configuration file.
-        --             defaulting to vim.loop.cwd()
-        -- -@return string|nil The path of the json file
-        -- find_json = function(cwd) end,
+        find_json = function(_) return vim.fn.stdpath "config" .. "/spell/cspell.json" end,
         ---@param payload UseSuggestionSuccess
         on_use_suggestion = function(payload) end,
 
@@ -66,27 +56,22 @@ return {
 
     config.sources = {
       -- Set a formatter
-      -- null_ls.builtins.formatting.stylua,
-      -- null_ls.builtins.formatting.prettier,
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.black,
       null_ls.builtins.diagnostics.tidy,
-      -- null_ls.builtins.formatting.prettier,
       null_ls.builtins.diagnostics.sqlfluff.with {
         extra_args = { "--dialect", "postgres" }, -- change to your dialect
       },
       null_ls.builtins.formatting.sqlfluff.with {
         extra_args = { "--dialect", "postgres" }, -- change to your dialect
       },
-      -- null_ls.builtins.completion.spell,
       -- See https://github.com/codespell-project/codespell?tab=readme-ov-file#usage for other settings
       null_ls.builtins.diagnostics.codespell.with {
         extra_args = { "-L ot" },
       },
       null_ls.builtins.diagnostics.protolint,
       null_ls.builtins.formatting.protolint,
-      -- null_ls.builtins.diagnostics.protoc_gen_lint,
 
       -- Check supported formatters and linters
       -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
